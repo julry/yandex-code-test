@@ -2,95 +2,72 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import QRCodeStyling from 'qr-code-styling';
 import { colors } from '../../constants/colors';
-import { BoldText } from './styledTexts';
-import { Background, BackgroundWrapper, ContentWrapper } from './wrappers';
+import { MediumText, RegularText } from './styledTexts';
 import { Modal } from './Modal';
-// import { DoneMark } from './svg/DoneMark';
-
-const ContentWrapperStyled = styled(ContentWrapper)`
-  margin: 0;
-  max-width: none;
-  white-space: pre-line;
-  display: flex;
-  flex-direction: column;
-  filter: blur(${({isModal}) => isModal ? '4px' : '0'});
-`;
+import desktopPic from './svg/desktopPic.svg';
+import { BorderBlock } from './BorderBlock';
+import { DoneMark } from './svg/DoneMark';
+import { SvgWrapper } from './SvgWrapper';
+import modalRectangles from './svg/rectangles/modalDesktop.svg'
+import { DesktopTop } from './svg/rectangles/DesktopTop';
+import { DesktopBottom } from './svg/rectangles/DesktopBottom';
 
 const Wrapper = styled.div`
   position: relative;
+  width: 100vw;
+  display: flex;
   justify-content: space-between;
-  padding: 6.9vh 70px 0;
-  width: 100%;
+  padding: 2.9vh 3.5vw 2.9vh 5.5729vw;
   height: 100%;
   overflow: hidden;
-
-  @media screen and (max-width: 900px) {
-    padding: 6vh 50px 0;
-  }
+  white-space: pre;
+  filter: blur(${({isModal}) => isModal ? '5px' : '0'});
 `;
 
-const Title = styled(BoldText)`
-  font-size: 40px;
-  line-height: 49px;
+const Title = styled(MediumText)`
+  font-size: 55px;
+  line-height: 62px;
   color: white;
+  letter-spacing: -0.01em;
+  margin-bottom: min(85px, 7.87vh);
+  text-align: center;
 
-  @media screen and (max-width: 900px) {
-    font-size: 36px;
+  @media screen and (max-height: 800px) {
+    font-size: 45px;
   }
 `;
 
-const TextWrapper = styled.div`
-  font-size: 24px;
-  margin-left: 25px;
-  
-  @media screen and (max-width: 900px) {
-    font-size: 20px;
-  }
-`;
-
-const QrWrapper = styled.div`
-  margin: auto 0 9.16667vh -85px;
-  background: white;
-  padding: 10px 0 10px 80px;
-  //border: 2px solid ${colors.purple};
-  border-left: none;
-  border-radius: 13px;
-  transform: matrix(1,0,-0.05,1,0,0);
-  width: 580px;
-  
-  @media screen and (max-height: 690px) {
-    margin-bottom: 5.16667vh;
-  }
-
-  @media screen and (max-height: 660px) {
-    margin-bottom: 2.16667vh;
-  }
-
-  @media screen and (max-width: 900px) {
-    margin-left: -65px;
-    padding-left: 60px;
-    width: 535px;
-  }
-`;
-
-const QrContent = styled.div`
+const QrWrapper = styled(BorderBlock)`
+  position: absolute;
+  right: 3.5vw;
+  top: calc((100vh - 750px) / 3);
+  padding: min(76px, 7.03vh) 36px  min(98px, 9.074vh);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  transform: matrix(1,0,0.05,1,0,0);
+  
+  @media screen and (max-height: 800px) {
+    top: calc((100vh - 550px) / 3);
+  }
 `;
 
 const ImageWrapper = styled.div`
-  position: absolute;
-  left: 508px;
-  bottom: 0;
-  height: 80.5vh;
+  height: 100%;
   align-items: flex-end;
   overflow: hidden;
-  width: calc(100vw - 508px);
 
   @media screen and (max-width: 900px) {
     left: 380px;
     width: calc(100vw - 380px);
+  }
+`;
+
+const Text = styled(RegularText)`
+  font-size: 30px;
+  text-align: center;
+  margin-top: 15px;
+  @media screen and (max-height: 800px) {
+    font-size: 25px;
   }
 `;
 
@@ -101,65 +78,59 @@ const Image = styled.img`
 
 const CopyBtn = styled.span`
   cursor: pointer;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid ${colors.textGray};
 `;
-
-// const LogoDesktopStyled = styled(LogoDesktop)`
-//   width: 215px;
-//   height: 120px;
-//   margin-bottom: 8.611vh;
-//   margin-left: -3px;
-//
-//   @media screen and (max-width: 900px) {
-//     width: 180px;
-//     height: 100px;
-//     margin-bottom: 5.611vh;
-//   }
-// `;
 
 const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: white;
+  height: 340px;
   justify-content: center;
-  width: 100%;
-  font-size: 20px;
+  border-radius: 5px;
 `;
-//
-// const DoneMarkStyled = styled(DoneMark)`
-//   height: 116px;
-//   width: 116px;
-//   margin-bottom: 24px;
-// `;
 
-const BottomBlock = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 525px;
-  background: ${colors.purple};
-  font-size: 32px;
-  width: calc(100vw - 605px);
-  max-width: 535px;
-  padding: 21px 0;
-  min-width: 295px;
+const ModalText = styled.p`
+  font-size: 30px;
+  color: #070717;
   text-align: center;
-  color: white;
-  border-radius: 45px 45px 0 0;
-  font-weight: bold;
-
-  @media screen and (max-width: 900px) {
-    left: 470px;
-    width: calc(100vw - 525px);
-    border-radius: 30px 30px 0 0;
-  }
 `;
 
-const BackgroundWrapperStyled = styled(BackgroundWrapper)`
-  filter: blur(${({isModal}) => isModal ? '4px' : '0'});
+const DoneMarkStyled = styled(DoneMark)`
+  height: 186px;
+  width: 186px;
+  margin-bottom: 32px;
 `;
 
 const ModalStyled = styled(Modal)`
-    padding: 32px 50px;
+  width: 500px;
+`;
+
+const Rectangles = styled(SvgWrapper)`
+  background: url(${modalRectangles});
+  width: 742px;
+  height: 455px;
+  top: -30px;
+  left: -112px;
+`;
+
+const TopRectangle = styled(DesktopTop)`
+  position: absolute;
+  z-index: -5;
+  width: 38.85vw;
+  height: 35.88vw;
+  top: -8.9vw;
+  left: -7.29vw;
+`;
+
+const BottomRectangle = styled(DesktopBottom)`
+  position: absolute;
+  z-index: -5;
+  width: 18.23vw;
+  height: 22.5vw;
+  bottom: -7.03vw;
+  right: -2.6vw;
 `;
 
 const onLinkCopy = () => {
@@ -208,65 +179,54 @@ export const InfoQr = () => {
     useEffect(() => {
         if (!ref?.current?.children.length) {
             const qrCode = new QRCodeStyling({
-                width: 220,
-                height: 220,
+                width: 250,
+                height: 250,
                 type: "svg",
                 backgroundOptions: {
                     color: "transparent",
                 },
                 dotsOptions: {
-                    type: 'rounded',
+                    color: 'white',
                 },
                 cornersSquareOptions: {
-                    type: 'extra-rounded',
+                    color: 'white',
                 },
                 cornersDotOptions: {
-                    type: 'extra-rounded',
-                },
-                imageOptions: {
-                    margin: 5,
-                    imageSize: 0.5
+                    color: 'white',
                 },
                 data: window.location.href
             });
             qrCode.append(ref.current);
-            // const defs = ref.current?.getElementsByTagName('defs')[0];
-            // defs.innerHTML += '<linearGradient id="paint0_linear_503_3" x1="0" y1="220" x2="220" y2="0" gradientUnits="userSpaceOnUse">' +
-            //     '            <stop stop-color="#5F308C"/>' +
-            //     '            <stop offset="1" stop-color="#F37022"/>' +
-            //     '        </linearGradient>';
-            // const rects = ref.current?.getElementsByTagName('rect');
-            // rects[rects.length-1].setAttribute('fill', "url(#paint0_linear_503_3)");
         }
     }, []);
 
     return (
-        <Wrapper>
-            <BackgroundWrapperStyled isModal={isModal}>
-                {/*<Background src={bgDesktop} alt={''} />*/}
-                {/*<ImageWrapper>*/}
-                {/*        <Image src={desktopPeople} alt={''} />*/}
-                {/*</ImageWrapper>*/}
-            </BackgroundWrapperStyled>
-            <ContentWrapperStyled isModal={isModal}>
-                {/*<Title>{'Вот-вот наступит твой\nпервый рабочий день\nв Axenix.'}</Title>*/}
+        <>
+            <Wrapper isModal={isModal}>
+                <ImageWrapper>
+                    <Image src={desktopPic} alt={''}/>
+                </ImageWrapper>
                 <QrWrapper>
-                    <QrContent>
-                        <div ref={ref} />
-                        <TextWrapper>
-                            {'Сканируй QR-код\nили копируй '} <CopyBtn onClick={onCopyButtonClick}>ссылку</CopyBtn>
-                        </TextWrapper>
-                    </QrContent>
+                    <Title>
+                        {'Заходи в игру с телефона,\nробот-стажёр уже ждёт тебя!'}
+                    </Title>
+                    <div ref={ref} />
+                    <Text>
+                        {'Сканируй QR-код выше \nили копируй себе '}<CopyBtn onClick={onCopyButtonClick}>ссылку</CopyBtn>
+                    </Text>
+                    <TopRectangle/>
+                    <BottomRectangle/>
                 </QrWrapper>
-            </ContentWrapperStyled>
-            {/*{isModal && (*/}
-            {/*    <ModalStyled>*/}
-            {/*        <ModalContent>*/}
-            {/*            <DoneMarkStyled />*/}
-            {/*            <p>Ссылка скопирована</p>*/}
-            {/*        </ModalContent>*/}
-            {/*    </ModalStyled>*/}
-            {/*)}*/}
-        </Wrapper>
+            </Wrapper>
+            {isModal && (
+                <ModalStyled>
+                    <ModalContent>
+                        <DoneMarkStyled />
+                        <ModalText>Ссылка скопирована</ModalText>
+                    </ModalContent>
+                    <Rectangles/>
+                </ModalStyled>
+            )}
+        </>
     );
 };

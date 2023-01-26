@@ -7,6 +7,7 @@ import { useProgressInit } from './hooks/useProgressInit';
 import { Title } from './components/shared/styledTexts';
 import { Orientation } from './components/shared/svg/Orientation';
 import { InfoQr } from './components/shared/InfoQr';
+import { colors } from './constants/colors';
 
 const Wrapper = styled.div`
   ${({ styles }) => styles};
@@ -44,7 +45,8 @@ const InfoScreen = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  background: white;
+  background: #080716;
+  color: ${colors.textGray};
   position: relative;
   z-index: 3000;
   flex-direction: ${({direction}) => direction};
@@ -94,21 +96,22 @@ export function App() {
   return (
       <ProgressProvider value={progress}>
         <Wrapper styles={{ height }}>
-          {!isMobile && (
+          {!isMobile ? (
               <InfoScreen direction={'column'}>
                 <InfoQr/>
               </InfoScreen>
-          )}
-          <ComponentWrapper ref={wrapperRef}>
-            <Component />
-          </ComponentWrapper>
-          {isMobile && (
-              <MobileViewLandscaped>
-                <InfoScreen direction={'row'}>
-                  <OrientationIcon/>
-                  <Title>Пожалуйста, переверни устройство :)</Title>
-                </InfoScreen>
-              </MobileViewLandscaped>
+          ) : (
+              <>
+                <ComponentWrapper ref={wrapperRef}>
+                  <Component />
+                </ComponentWrapper>
+                <MobileViewLandscaped>
+                  <InfoScreen direction={'row'}>
+                    <OrientationIcon/>
+                    <Title>Пожалуйста, переверни устройство :)</Title>
+                  </InfoScreen>
+                </MobileViewLandscaped>
+              </>
           )}
         </Wrapper>
       </ProgressProvider>

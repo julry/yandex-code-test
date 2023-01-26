@@ -1,5 +1,6 @@
 export const DoneMark = (props) => (
-    <svg {...props} viewBox="0 0 31 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 12.4583L12.6935 23L30 1" stroke="#E4E4E3" strokeWidth="1.5" strokeLinecap="round"/>
+    <svg {...props} viewBox="0 0 186 186" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="92.9995" cy="92.9996" r="93" fill="#FDD403"/>
+        <path d="M51.377 89.4227L86.0851 122.265L139.174 63.7339" stroke="black" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 )

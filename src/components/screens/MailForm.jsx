@@ -172,6 +172,11 @@ export const MailForm = () => {
     const {next} = useProgress();
     const [mail, setMail] = useState('');
     const [agreement, setAgreement] = useState(false);
+
+    const onOpen = (e) => {
+        e.stopPropagation();
+        openHref('https://fut.ru/personal_data_policy/');
+    }
     return (
         <>
             <BackgroundWrapper>
@@ -214,6 +219,7 @@ export const MailForm = () => {
                             <InputCheckboxStyled
                                 type={'radio'}
                                 name={'agreement'}
+                                onChange={() => {}}
                                 checked={agreement}
                             />
                             <RadioIconStyled/>
@@ -221,7 +227,7 @@ export const MailForm = () => {
                                 <TextStyled>
                                     {'Я согласен на '}
                                     <PersonalDataLink
-                                        onClick={() => openHref('https://fut.ru/personal_data_policy/')}
+                                        onTouchStart={(e) => onOpen(e)}
                                     >
                                         обработку персональных данных
                                     </PersonalDataLink>
