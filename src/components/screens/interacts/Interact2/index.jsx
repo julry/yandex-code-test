@@ -8,14 +8,14 @@ import { Rules2 } from './Rules2';
 import { FinishModal } from './FinishModal';
 import { useProgress } from '../../../../hooks/useProgress';
 
-const ANSWER = ['#1495CF', '#5A50E2', '#FCCD00', '#62B146'];
+const ANSWER = ['#E72525', '#F8791D', '#FCCD00', '#62B146'];
 const TRIES_AMOUNT = 5;
 const CIRCLES_AMOUNT = 4;
 const COLORS = ['#E72525', '#5A50E2', '#1495CF', '#62B146', '#FCCD00', '#F8791D', '#FFFFFF', '#D7D7D7'];
 
 const Wrapper = styled(ContentWrapper)`
   --circleWidth: 65px;
-  filter: blur(${({isModal}) => isModal ? '5px' : '0'});
+  ${({isModal}) => isModal ? 'filter: blur(5px);' : ''};
   @media screen and (max-width: 330px) {
     --circleWidth: 55px;
   }

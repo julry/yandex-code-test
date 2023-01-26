@@ -20,8 +20,8 @@ const TOTAL_TRIES_AMOUNT = 2;
 
 const Wrapper = styled(ContentWrapper)`
   --cellWidth: 58px;
-  filter: blur(${({isModal}) => isModal ? '5px' : '0'});
-
+  ${({isModal}) => isModal ? 'filter: blur(5px);' : ''};
+  
   @media screen and (max-width: 330px) {
     --cellWidth: 50px;
   }
