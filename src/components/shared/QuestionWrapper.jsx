@@ -13,7 +13,7 @@ import { LooseModal } from './LooseModal';
 
 const Wrapper = styled(ContentWrapper)`
   padding: 8.5vw 5.5vw 8vw;
-  filter: blur(${({isModal}) => isModal ? '5px' : 0});
+  ${({isModal}) => isModal ? 'filter: blur(5px);' : ''};
 `;
 
 const TextBlock = styled(BorderBlock)`

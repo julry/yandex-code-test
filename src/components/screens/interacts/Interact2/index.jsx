@@ -123,7 +123,7 @@ export const Interact2 = () => {
 
     return (
         <>
-            <Wrapper isModal={finishModal.shown || rulesModal}>
+            <Wrapper isModal={finishModal || rulesModal}>
                 <RulesText onClick={() => setRulesModal(true)}>Правила</RulesText>
                 {tries.map((tr, ind) => (
                     <TriesWrapper key={'wrapper_' + ind}>
