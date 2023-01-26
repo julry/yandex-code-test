@@ -6,7 +6,7 @@ import { workPlace2 } from '../../../../constants/images';
 import { Description } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { BorderBlock } from '../../../shared/BorderBlock';
-import { Welcome } from '../../../shared/svg/Welcome';
+import welcome from '../../../shared/svg/welcome.svg';
 import { Post3Purple } from '../../../shared/svg/rectangles/Post3Purple';
 import { Post3Yellow } from '../../../shared/svg/rectangles/Post3Yellow';
 
@@ -17,7 +17,8 @@ const Wrapper = styled(DarkenWrapper)`
 const TextBlock = styled(BorderBlock)`
   display: flex;
   flex-direction: column;
-  padding: 6.4vw 4.533vw;
+  background: url(${welcome}) no-repeat;
+  background-size: contain;
   width: 80.266vw;
   min-width: 80.266vw;
   max-width: 301px;
@@ -49,11 +50,6 @@ const RectangleYellow = styled(Post3Yellow)`
   z-index: -2;
 `;
 
-const WelcomePic = styled(Welcome)`
-  width: 100%;
-  height: 100%;
-`;
-
 export const PostInteract3 = () => {
     const {next} = useProgress();
     return (
@@ -75,7 +71,6 @@ export const PostInteract3 = () => {
                     }
                 </Description>
                 <TextBlock>
-                    <WelcomePic/>
                     <RectanglePurple />
                     <RectangleYellow />
                 </TextBlock>
