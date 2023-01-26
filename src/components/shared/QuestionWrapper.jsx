@@ -12,7 +12,7 @@ import { NextArrow } from './svg/NextArrow';
 import { LooseModal } from './LooseModal';
 
 const Wrapper = styled(ContentWrapper)`
-  padding: 8.5vw 5.5vw 1vw;
+  padding: 8.5vw 5.5vw 8vw;
   filter: blur(${({isModal}) => isModal ? '5px' : 0});
 `;
 
