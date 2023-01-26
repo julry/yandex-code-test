@@ -84,7 +84,7 @@ export const Interact2 = () => {
     const [currentTry, setCurrentTry] = useState(0);
     const [currentColors, setCurrentColors] = useState([]);
     const [finishModal, setFinishModal] = useState(false);
-    const [rulesModal, setRulesModal] = useState(false);
+    const [rulesModal, setRulesModal] = useState(true);
 
     const circles = getArray(CIRCLES_AMOUNT, () => '');
 

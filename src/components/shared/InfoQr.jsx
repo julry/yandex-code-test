@@ -37,16 +37,21 @@ const Title = styled(MediumText)`
   }
 `;
 
-const QrWrapper = styled(BorderBlock)`
+const QrWrapper = styled.div`
   position: absolute;
   right: 3.5vw;
   top: 50%;
   transform: translateY(-50%);
+`;
+
+const QrWrapperInner = styled(BorderBlock)`
   padding: min(76px, 7.03vh) 36px  min(98px, 9.074vh);
   display: flex;
-  z-index: 3;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 `;
 
 const ImageWrapper = styled.div`
@@ -115,7 +120,7 @@ const Rectangles = styled(SvgWrapper)`
 
 const TopRectangle = styled(DesktopTop)`
   position: absolute;
-  z-index: -5;
+  z-index: 1;
   width: 38.85vw;
   height: 35.88vw;
   top: -8.9vw;
@@ -124,7 +129,7 @@ const TopRectangle = styled(DesktopTop)`
 
 const BottomRectangle = styled(DesktopBottom)`
   position: absolute;
-  z-index: -5;
+  z-index: 1;
   width: 18.23vw;
   height: 22.5vw;
   bottom: -7.03vw;
@@ -205,13 +210,15 @@ export const InfoQr = () => {
                     <Image src={desktopPic} alt={''}/>
                 </ImageWrapper>
                 <QrWrapper>
-                    <Title>
-                        {'Заходи в игру с телефона,\nробот-стажёр уже ждёт тебя!'}
-                    </Title>
-                    <div ref={ref} />
-                    <Text>
-                        {'Сканируй QR-код выше \nили копируй себе '}<CopyBtn onClick={onCopyButtonClick}>ссылку</CopyBtn>
-                    </Text>
+                    <QrWrapperInner>
+                        <Title>
+                            {'Заходи в игру с телефона,\nробот-стажёр уже ждёт тебя!'}
+                        </Title>
+                        <div ref={ref} />
+                        <Text>
+                            {'Сканируй QR-код выше \nили копируй себе '}<CopyBtn onClick={onCopyButtonClick}>ссылку</CopyBtn>
+                        </Text>
+                    </QrWrapperInner>
                     <TopRectangle/>
                     <BottomRectangle/>
                 </QrWrapper>

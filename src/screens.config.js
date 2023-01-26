@@ -14,7 +14,6 @@ import { Question2 } from './components/screens/questions/Question2';
 import { CoffeeBrake } from './components/screens/locations/CoffeeBreak';
 import { PostQuestion2 } from './components/screens/questions/Question2/PostQuestion2';
 import { PreInteract2 } from './components/screens/interacts/Interact2/PreInteract2';
-import { RulesInteract2 } from './components/screens/interacts/Interact2/RulesInteract2';
 import { Interact2 } from './components/screens/interacts/Interact2';
 import { PostInteract2 } from './components/screens/interacts/Interact2/PostInteract2';
 import { WorkPlace2 } from './components/screens/locations/WorkPlace2';
@@ -101,26 +100,21 @@ export const screens = [
     },
     {
         id: 14,
-        component: RulesInteract2,
-        preloadImages: [],
-    },
-    {
-        id: 15,
         component: Interact2,
         preloadImages: [],
     },
     {
-        id: 16,
+        id: 15,
         component: PostInteract2,
         preloadImages: [],
     },
     {
-        id: 17,
+        id: 16,
         component: WorkPlace2,
         preloadImages: [],
     },
     {
-        id: 18,
+        id: 17,
         component: PreInteract3,
         preloadImages: [],
     },
@@ -130,12 +124,12 @@ export const screens = [
     //     preloadImages: [],
     // },
     {
-        id: 20,
+        id: 19,
         component: PostInteract3,
         preloadImages: [],
     },
     {
-        id: 21,
+        id: 20,
         component: MailForm,
         preloadImages: [],
     },
