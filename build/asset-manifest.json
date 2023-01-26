@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "./static/css/main.0f62f322.css",
+    "main.js": "./static/js/main.1e220023.js",
+    "static/media/workPlace.png": "./static/media/workPlace.07ab6bc99bb1de9dc286.png",
+    "static/media/workPlace2.png": "./static/media/workPlace2.4c6566d1482c58a20555.png",
+    "static/media/meeting.png": "./static/media/meeting.fb9d7d0753d0d5debb47.png",
+    "static/media/reception.png": "./static/media/reception.e891e05486bcc9ce4925.png",
+    "static/media/coffeeBrake.png": "./static/media/coffeeBrake.8773937fcb9c20d1a9c7.png",
+    "static/media/desktopPic.svg": "./static/media/desktopPic.20f1e351c61a3075f848c2b78481a879.svg",
+    "static/media/YandexSansText-Medium.ttf": "./static/media/YandexSansText-Medium.1a767a2ef3ff8c207f82.ttf",
+    "static/media/YandexSansText-Bold.ttf": "./static/media/YandexSansText-Bold.60bb95175b8a8775639e.ttf",
+    "static/media/YandexSansText-Regular.ttf": "./static/media/YandexSansText-Regular.1a3aa4c8d33c3b216bb3.ttf",
+    "static/media/YandexSansText-Medium.woff": "./static/media/YandexSansText-Medium.6b83f25f39c3f10cc22e.woff",
+    "static/media/YandexSansText-Bold.woff": "./static/media/YandexSansText-Bold.93ad5a0a463082e24771.woff",
+    "static/media/YandexSansText-Regular.woff": "./static/media/YandexSansText-Regular.1c422f2ef1e510532200.woff",
+    "static/media/YandexSansText-Medium.woff2": "./static/media/YandexSansText-Medium.43fa0def7951e857f96c.woff2",
+    "static/media/YandexSansText-Bold.woff2": "./static/media/YandexSansText-Bold.b7699b9b700ad29caa9b.woff2",
+    "static/media/YandexSansText-Regular.woff2": "./static/media/YandexSansText-Regular.fd627cc781ea46efb18f.woff2",
+    "index.html": "./index.html",
+    "static/media/winModal.svg": "./static/media/winModal.e8fec4640c8be9ec6caf79fba975483b.svg",
+    "static/media/intro.svg": "./static/media/intro.af5d48d061872d260a2e5abd1efbc9cd.svg",
+    "static/media/interact2Finish.svg": "./static/media/interact2Finish.cd877c6ad89d9643d7f972bca16add8a.svg",
+    "static/media/preInteract2.svg": "./static/media/preInteract2.9a82138a3f5eabbc4c02efd81996c74e.svg",
+    "static/media/preInteract3.svg": "./static/media/preInteract3.d3f95aa21c11894499f193f162777266.svg",
+    "static/media/preInteract1.svg": "./static/media/preInteract1.363d855b5782f9d1882aff77cdc633bf.svg",
+    "static/media/reception.svg": "./static/media/reception.cfb15b61de01b13115a7b8e5546e69a4.svg",
+    "static/media/preQuestion2.svg": "./static/media/preQuestion2.8f7052ae215c4754cb3f1d6c0372935a.svg",
+    "static/media/language.svg": "./static/media/language.60785833fe335a74e7a43edf6fee851a.svg",
+    "static/media/workPlace.svg": "./static/media/workPlace.1bcbc949c66cc7adb473f22d7ad68b5a.svg",
+    "static/media/workPlace2.svg": "./static/media/workPlace2.4016ab04f3f392b80761ec977d22deff.svg",
+    "static/media/pre1.svg": "./static/media/pre1.56563331ab3a6c07a72d1812591f9159.svg",
+    "static/media/meeting.svg": "./static/media/meeting.cdf4c6b997f8c5d987aae22e729c884b.svg",
+    "static/media/coffee.svg": "./static/media/coffee.e457f0bb07330cef32bf42dd866e372b.svg",
+    "static/media/modalDesktop.svg": "./static/media/modalDesktop.6a4455a8f0b1739568527a1837168c20.svg",
+    "main.0f62f322.css.map": "./static/css/main.0f62f322.css.map",
+    "main.1e220023.js.map": "./static/js/main.1e220023.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0f62f322.css",
+    "static/js/main.1e220023.js"
+  ]
+}
