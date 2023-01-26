@@ -31,7 +31,6 @@ const Rectangles = styled(SvgWrapper)`
 `;
 
 const TitleStyled = styled(Title)`
-  color: ${colors.yellow};
   margin-bottom: 4.5vw;
   
   @media screen and (min-width: 600px) {
