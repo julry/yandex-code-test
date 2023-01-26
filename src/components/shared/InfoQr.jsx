@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   height: 100%;
   overflow: hidden;
   white-space: pre;
-  filter: blur(${({isModal}) => isModal ? '5px' : '0'});
+  ${({isModal}) => isModal ? 'filter: blur(5px);' : ''};
 `;
 
 const Title = styled(MediumText)`

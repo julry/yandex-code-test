@@ -9,7 +9,7 @@ import { Rules3Purple } from '../../../shared/svg/rectangles/Rules3Purple';
 
 const Wrapper = styled(ContentWrapper)`
   --circleWidth: 65px;
-  filter: blur(${({isModal}) => isModal ? '5px' : '0'});
+  ${({isModal}) => isModal ? 'filter: blur(5px);' : ''};
   @media screen and (max-width: 330px) {
     --circleWidth: 55px;
   }
