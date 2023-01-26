@@ -118,11 +118,11 @@ export const screens = [
         component: PreInteract3,
         preloadImages: [],
     },
-    // {
-    //     id: 19,
-    //     component: Interact3,
-    //     preloadImages: [],
-    // },
+    {
+        id: 18,
+        component: Interact3,
+        preloadImages: [],
+    },
     {
         id: 19,
         component: PostInteract3,
