@@ -11,6 +11,7 @@ import { SvgWrapper } from './SvgWrapper';
 import modalRectangles from './svg/rectangles/modalDesktop.svg'
 import { DesktopTop } from './svg/rectangles/DesktopTop';
 import { DesktopBottom } from './svg/rectangles/DesktopBottom';
+import { DoneMarkDesktop } from './svg/DoneMarkDesktop';
 
 const Wrapper = styled.div`
   position: relative;
@@ -97,7 +98,7 @@ const ModalText = styled.p`
   text-align: center;
 `;
 
-const DoneMarkStyled = styled(DoneMark)`
+const DoneMarkStyled = styled(DoneMarkDesktop)`
   height: 186px;
   width: 186px;
   margin-bottom: 32px;
