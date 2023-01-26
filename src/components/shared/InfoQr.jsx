@@ -6,7 +6,6 @@ import { MediumText, RegularText } from './styledTexts';
 import { Modal } from './Modal';
 import desktopPic from './svg/desktopPic.svg';
 import { BorderBlock } from './BorderBlock';
-import { DoneMark } from './svg/DoneMark';
 import { SvgWrapper } from './SvgWrapper';
 import modalRectangles from './svg/rectangles/modalDesktop.svg'
 import { DesktopTop } from './svg/rectangles/DesktopTop';
@@ -41,15 +40,13 @@ const Title = styled(MediumText)`
 const QrWrapper = styled(BorderBlock)`
   position: absolute;
   right: 3.5vw;
-  top: calc((100vh - 750px) / 3);
+  top: 50%;
+  transform: translateY(-50%);
   padding: min(76px, 7.03vh) 36px  min(98px, 9.074vh);
   display: flex;
+  z-index: 3;
   flex-direction: column;
   align-items: center;
-  
-  @media screen and (max-height: 800px) {
-    top: calc((100vh - 550px) / 3);
-  }
 `;
 
 const ImageWrapper = styled.div`
