@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.0f62f322.css",
-    "main.js": "./static/js/main.73357fe6.js",
+    "main.js": "./static/js/main.1e9c5a55.js",
     "static/media/workPlace.png": "./static/media/workPlace.07ab6bc99bb1de9dc286.png",
     "static/media/workPlace2.png": "./static/media/workPlace2.4c6566d1482c58a20555.png",
     "static/media/meeting.png": "./static/media/meeting.fb9d7d0753d0d5debb47.png",
@@ -17,6 +17,7 @@
     "static/media/YandexSansText-Medium.woff2": "./static/media/YandexSansText-Medium.43fa0def7951e857f96c.woff2",
     "static/media/YandexSansText-Bold.woff2": "./static/media/YandexSansText-Bold.b7699b9b700ad29caa9b.woff2",
     "static/media/YandexSansText-Regular.woff2": "./static/media/YandexSansText-Regular.fd627cc781ea46efb18f.woff2",
+    "static/media/welcome.svg": "./static/media/welcome.6bff7a0ce4ad4ea82ab18e5ac142e5cc.svg",
     "index.html": "./index.html",
     "static/media/winModal.svg": "./static/media/winModal.e8fec4640c8be9ec6caf79fba975483b.svg",
     "static/media/intro.svg": "./static/media/intro.af5d48d061872d260a2e5abd1efbc9cd.svg",
@@ -34,10 +35,10 @@
     "static/media/coffee.svg": "./static/media/coffee.e457f0bb07330cef32bf42dd866e372b.svg",
     "static/media/modalDesktop.svg": "./static/media/modalDesktop.6a4455a8f0b1739568527a1837168c20.svg",
     "main.0f62f322.css.map": "./static/css/main.0f62f322.css.map",
-    "main.73357fe6.js.map": "./static/js/main.73357fe6.js.map"
+    "main.1e9c5a55.js.map": "./static/js/main.1e9c5a55.js.map"
   },
   "entrypoints": [
     "static/css/main.0f62f322.css",
-    "static/js/main.73357fe6.js"
+    "static/js/main.1e9c5a55.js"
   ]
 }
