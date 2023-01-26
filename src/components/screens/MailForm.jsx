@@ -100,11 +100,9 @@ const TextWrapperStyled = styled.div`
 
 const TextStyled = styled(RegularText)`
   font-size: 9px;
-  @media screen and (min-width: 350px) and (min-height: 700px) {
-    font-size: 10px;
-  }
 
   @media screen and (min-width: 768px) {
+    white-space: normal;
     font-size: 12px;
   }
 
