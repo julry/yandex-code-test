@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { reception } from '../../constants/images';
 import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../shared/wrappers';
@@ -47,7 +47,7 @@ const Input = styled.input`
   color: inherit;
   width: 100%;
   font-family: 'Yandex Sans', Tahoma, Geneva, sans-serif;
-
+  
   &:focus {
     outline: none;
   }
@@ -122,10 +122,12 @@ const PersonalDataLink = styled.span`
 
 const InputWrapper = styled.div`
   padding: 8px 12px;
-  border: 1px solid ${colors.textGray};
+  border: 1px solid ${({valid}) => valid ? colors.textGray : 'red'};
   border-radius: 5px;
   font-size: 18px;
   color: ${colors.textGray};
+  transition: border 0.3s ease-in;
+  
   @media screen and (max-width: 330px) {
     font-size: 16px;
   }
@@ -176,6 +178,7 @@ export const MailForm = () => {
     const [mail, setMail] = useState('');
     const [agreement, setAgreement] = useState(false);
     const [animation, setAnimation] = useState(false);
+    const [validMail, setValidMail] = useState(true);
 
     const onOpen = (e) => {
         e.stopPropagation();
@@ -183,12 +186,22 @@ export const MailForm = () => {
     };
 
     const onSend = () => {
+        if (!validMail) return;
         setAnimation(true);
         sendDataToForms({mail}).then(() => {
             setAnimation(false);
             // openHref('')
         })
-    }
+    };
+
+    const checkValidMail = () => {
+        return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail);
+    };
+
+    useEffect(() => {
+        if (validMail) return;
+        setValidMail(checkValidMail());
+    }, [mail])
     return (
         <>
             <BackgroundWrapper>
@@ -215,13 +228,14 @@ export const MailForm = () => {
                         }
                     </RegularDescription>
                     <Form>
-                        <InputWrapper>
+                        <InputWrapper valid={validMail}>
                             <Input
                                 type="email"
                                 placeholder="example@post.ru"
                                 name="XmnwAc"
                                 value={mail}
                                 onChange={e => setMail(e.target.value)}
+                                onBlur={() => setValidMail(() => !mail.length || checkValidMail())}
                                 required
                             />
                         </InputWrapper>
@@ -251,7 +265,7 @@ export const MailForm = () => {
                     <SendBtn
                         animation={animation}
                         onClick={onSend}
-                        disabled={!agreement || mail.length < 5 || animation}
+                        disabled={!validMail || !agreement || mail.length < 5 || animation }
                     >
                         Отправить
                     </SendBtn>
