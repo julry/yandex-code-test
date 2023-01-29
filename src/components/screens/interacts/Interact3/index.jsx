@@ -12,6 +12,7 @@ import { Post3Yellow } from '../../../shared/svg/rectangles/Post3Yellow';
 import { colors } from '../../../../constants/colors';
 import { Rules3Purple } from '../../../shared/svg/rectangles/Rules3Purple';
 import { Rules3Yellow } from '../../../shared/svg/rectangles/Rules3Yellow';
+import { ButtonCentered } from '../../../shared/ButtonCentered';
 
 const CELLS_COLUMN_AMOUNT = 4;
 const CELLS_ROW_AMOUNT = 4;
@@ -92,6 +93,11 @@ const PurpleRulesRectangle = styled(Rules3Purple)`
   z-index: -2;
 `;
 
+const ButtonStyled = styled(ButtonCentered)`
+  margin-top: auto;
+  margin-bottom: min(40px, 10.6vw);
+`;
+
 const getRowId = (i) => Math.floor(i / CELLS_ROW_AMOUNT);
 const getColId = (i) => i % CELLS_ROW_AMOUNT;
 
@@ -117,13 +123,12 @@ export const Interact3 = () => {
     const [cells, setCells] = useState([]);
     const [shownCells, setShownCells] = useState([]);
     const [finished, setFinished] = useState(false);
-    const [rulesModal, setRulesModal] = useState(true);
+    const [rulesModal, setRulesModal] = useState({shown: true, isFirstTime: true});
 
     const getArray = (length, content) => {
         const func = typeof content === 'function' ? content : () => content;
         return Array.from({length}, func);
     };
-
 
     useEffect(() => {
         const size = (document.documentElement.clientWidth * 0.804) / CELLS_ROW_AMOUNT;
@@ -166,8 +171,8 @@ export const Interact3 = () => {
 
     return (
         <>
-            <Wrapper isModal={rulesModal}>
-                <RulesText onClick={() => setRulesModal(true)}>Правила</RulesText>
+            <Wrapper isModal={rulesModal.shown}>
+                <RulesText onClick={() => setRulesModal({shown: true, isFirstTime: false})}>Правила</RulesText>
                 <CellsWrapper>
                     {shownCells.map((cell, i) => (
                         <Cell key={cell.id} styles={cell.styles} onClick={() => onMoveCell(i)}>
@@ -177,10 +182,14 @@ export const Interact3 = () => {
                     <PurpleRectangle/>
                     <YellowRectangle/>
                 </CellsWrapper>
+                <ButtonStyled onClick={next}>Пропустить</ButtonStyled>
             </Wrapper>
             {
-                rulesModal && (
-                    <RulesModal close={() => setRulesModal(false)}>
+                rulesModal.shown && (
+                    <RulesModal
+                        close={() => setRulesModal({shown: false, isFirstTime: false})}
+                        firstTime={rulesModal.isFirstTime}
+                    >
                         <RegularDescription>
                             {
                                 'Жми на кусочки изображения, чтобы поставить их на свои места. \n' +

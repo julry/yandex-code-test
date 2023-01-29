@@ -53,7 +53,7 @@ export const Intro = () => {
             <TitleStyled>
                 Первый робо-рабочий день в офисе начинается!
             </TitleStyled>
-            <ButtonCentered width={'65vw'} onClick={next}>Поехали</ButtonCentered>
+            <ButtonCentered onClick={next}>Поехали</ButtonCentered>
         </Wrapper>
     )
 }

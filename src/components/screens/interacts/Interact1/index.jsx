@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { ContentWrapper } from '../../../shared/wrappers';
 import { DescriptionMd, DescriptionSm, Medium, RegularDescription, Title } from '../../../shared/styledTexts';
@@ -28,6 +28,10 @@ const Wrapper = styled(ContentWrapper)`
 
   @media screen and (max-width: 300px) {
     --cellWidth: 45px;
+  }
+  
+  @media screen and (min-width: 700px) {
+    --cellWidth: 75px;
   }
 `;
 
@@ -119,16 +123,16 @@ export const Interact1 = () => {
         const func = typeof content === 'function' ? content : () => content;
         return Array.from({length}, func);
     };
-    const initialTries = [...getArray(TRIES_AMOUNT, getArray(CELLS_AMOUNT, ''))];
+    const initialTries = useMemo(() => [...getArray(TRIES_AMOUNT, getArray(CELLS_AMOUNT, ''))],[]);
     const {next} = useProgress();
     const [tries, setTries] = useState(initialTries);
     const [totalTries, setTotalTries] = useState(TOTAL_TRIES_AMOUNT);
     const [currentTry, setCurrentTry] = useState(0);
     const [currentNumId, setCurrentNumId] = useState(0);
     const [finishModal, setFinishModal] = useState({shown: false});
-    const [rulesModal, setRulesModal] = useState(true);
+    const [rulesModal, setRulesModal] = useState({shown: true, isFirstTime: true});
 
-    const numbers = getArray(10, (a, i) => i + 1);
+    const numbers = getArray(10, (a, i) => i);
     const maxLength = numbers.length / CELLS_AMOUNT;
 
     let numbersLines = getArray(maxLength).map((_, i) => numbers.slice(i * CELLS_AMOUNT, (i + 1) * CELLS_AMOUNT));
@@ -181,20 +185,24 @@ export const Interact1 = () => {
         }
         setCurrentNumId(0);
         setCurrentTry(id => id + 1);
-    }, [tries, next]);
+    }, [tries, next, currentTry, totalTries]);
 
-    const onRetry = () => {
+    const onRetry = useCallback(() => {
         setTries(initialTries);
         setCurrentTry(0);
         setCurrentNumId(0);
         setFinishModal({shown: false, isOneMoreTry: false});
         setTotalTries(total => --total);
-    };
+    }, [initialTries]);
+
+    const closeRulesModal = useCallback(() => {
+        setRulesModal({shown: false, isFirstTime: false});
+    }, [setRulesModal]);
 
     return (
         <>
-            <Wrapper isModal={finishModal.shown || rulesModal}>
-                <RulesText onClick={() => setRulesModal(true)}>Правила</RulesText>
+            <Wrapper isModal={finishModal.shown || rulesModal.shown}>
+                <RulesText onClick={() => setRulesModal({shown: true, isFirstTime: false})}>Правила</RulesText>
                 {tries.map((tr, ind) => (
                     <Line key={'line_' + ind}>
                         {tr.map((cell, i) => (
@@ -226,7 +234,7 @@ export const Interact1 = () => {
                                     'Ты почти у цели! У тебя есть ещё 5 попыток. В этот раз обязательно получится ;)'
                                 }
                             </DescriptionMd>
-                            <ButtonModalStyled onClick={onRetry} width={'65vw'}>Подобрать снова</ButtonModalStyled>
+                            <ButtonModalStyled onClick={onRetry}>Подобрать снова</ButtonModalStyled>
                         </LooseModal>
                     ) : (
                         <LooseModal>
@@ -236,12 +244,12 @@ export const Interact1 = () => {
                                     '\n' +
                                     'Ответ: ' + ANSWER.join('')}
                             </DescriptionMd>
-                            <ButtonModalStyled hasSvg onClick={next} width={'65vw'}><Arrow/></ButtonModalStyled>
+                            <ButtonModalStyled hasSvg onClick={next}><Arrow/></ButtonModalStyled>
                         </LooseModal>
                     )
             )}
             {
-                rulesModal && <RulesModal close={() => setRulesModal(false)}>
+                rulesModal.shown && <RulesModal close={closeRulesModal} firstTime={rulesModal.isFirstTime}>
                     <RegularDescription>
                         {
                             'Вписывай цифры в пустые ячейки ряда так, чтобы они в сумме давали 27. Отправляй свой ответ галочкой, \n' +
@@ -262,5 +270,4 @@ export const Interact1 = () => {
             }
         </>
     );
-
 };

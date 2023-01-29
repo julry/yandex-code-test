@@ -10,6 +10,7 @@ import { openHref } from '../../utils/openHref';
 import { colors } from '../../constants/colors';
 import { MailPurple } from '../shared/svg/rectangles/MailPurple';
 import { MailYellow } from '../shared/svg/rectangles/MailYellow';
+import { sendDataToForms } from '../../utils/sendDataToForms';
 
 const Wrapper = styled(DarkenWrapper)`
   padding: min(25.333vw, 95px) 6.9333vw 10px;
@@ -30,6 +31,10 @@ const Form = styled.div`
   padding: min(4vw, 15px) 0 0;
   width: 65vw;
   max-width: 245px;
+  
+  @media screen and (min-width: 700px) {
+    max-width: 300px;
+  }
 `;
 
 const Input = styled.input`
@@ -128,20 +133,20 @@ const InputWrapper = styled.div`
 
 const sending = keyframes`
   0% {
-    scale: 1;
+      background: ${colors.purple};
   }
   50% {
-    scale: 1.06;
+      background: transparent;
   }
   100% {
-    scale: 1;
+    background: ${colors.purple};
   }
 `;
 
 const SendBtn = styled(ButtonCentered)`
   margin-top: min(5.333vw, 20px);
   transform-origin: 50% 50%;
-  animation: ${sending} ${({animation}) => animation ? '1.5s' : 0} infinite cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  animation: ${sending} ${({animation}) => animation ? '2s' : 0} infinite ease-in;
 `;
 
 const RectanglePurple = styled(MailPurple)`
@@ -170,10 +175,19 @@ export const MailForm = () => {
     const {next} = useProgress();
     const [mail, setMail] = useState('');
     const [agreement, setAgreement] = useState(false);
+    const [animation, setAnimation] = useState(false);
 
     const onOpen = (e) => {
         e.stopPropagation();
         openHref('https://fut.ru/personal_data_policy/');
+    };
+
+    const onSend = () => {
+        setAnimation(true);
+        sendDataToForms({mail}).then(() => {
+            setAnimation(false);
+            // openHref('')
+        })
     }
     return (
         <>
@@ -185,10 +199,10 @@ export const MailForm = () => {
                     <RegularDescription>
                         {
                             'Поздравляем, ты отлично справился! Первый рабочий день прошел успешно. ' +
-                            'В Яндексе тебя ждет ещё много интересных задач, ценного опыта и классная команда. \n' +
-                            'Регистрируйся на настоящую стажировку — переходи в '
+                            'В Яндексе тебя ждет ещё много интересных задач, ценного опыта и классная команда.\n' +
+                            'Подавай заявку на настоящую стажировку в '
                         }
-                        <Medium>TG-канал Яндекса!</Medium>
+                        <Medium>Telegram-канале</Medium>!
                     </RegularDescription>
                     <br/>
                     <RegularDescription>
@@ -235,16 +249,16 @@ export const MailForm = () => {
                         </LabelStyled>
                     </Form>
                     <SendBtn
-                        width={'65vw'}
-                        onClick={next}
-                        disabled={!agreement || mail.length < 5}
+                        animation={animation}
+                        onClick={onSend}
+                        disabled={!agreement || mail.length < 5 || animation}
                     >
                         Отправить
                     </SendBtn>
                     <RectanglePurple/>
                     <RectangleYellow/>
                 </TextBlock>
-                <ButtonCentered width={'65vw'} onClick={next}>Подать заявку</ButtonCentered>
+                <ButtonCentered onClick={next}>Подать заявку</ButtonCentered>
             </Wrapper>
         </>
     );

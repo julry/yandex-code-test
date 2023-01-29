@@ -20,6 +20,7 @@ const TextBlock = styled(BorderBlock)`
   padding: 8.5vw 4.8vw 5.5vw;
   width: 100%;
   margin: auto 0;
+  white-space: break-spaces;
 `;
 
 const Answer = styled.div`
@@ -63,6 +64,10 @@ const DescriptionMdStyled = styled(DescriptionMd)`
     margin-bottom: 2.9vw;
 `;
 
+const QuestionSm = styled(DescriptionSm)`
+    margin-top: 0.5em;
+`;
+
 export const QuestionWrapper = (props) => {
     const [isModal, setIsModal] = useState({shown: false});
     const {updateAnswer, answers, next, language} = useProgress();
@@ -77,7 +82,7 @@ export const QuestionWrapper = (props) => {
                  next();
             }, 3000);
         }
-    }, [setIsModal, answers]);
+    }, [setIsModal, answers, correctAnswer, next, question]);
 
     const onAnswerChoose = (id) => {
         if (answers[question.id] === id) {
@@ -87,15 +92,18 @@ export const QuestionWrapper = (props) => {
         updateAnswer(question.id, id);
     };
 
+    const QuestionWrapper = question?.questionSize === 'sm' ?
+        QuestionSm : question?.questionSize === 'md' ? DescriptionMd
+        : Description;
     return (
         <>
             <Wrapper ref={props.wrapperRef} isModal={isModal.shown}>
                 {!!question?.text && <DescriptionMdStyled>{question.text}</DescriptionMdStyled>}
                 <TextBlock>
                     {props.children}
-                    <Description>
+                    <QuestionWrapper>
                         {question?.question}
-                    </Description>
+                    </QuestionWrapper>
                     <LanguageWrapper>
                         {language}
                     </LanguageWrapper>

@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Background, BackgroundScaled, BackgroundWrapper, ContentWrapper } from './wrappers';
 import { BorderBlock } from './BorderBlock';
 import { Description } from './styledTexts';
 import { useProgress } from '../../hooks/useProgress';
+import { ButtonCentered } from './ButtonCentered';
+import { NextArrow } from './svg/NextArrow';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -11,17 +13,31 @@ const Wrapper = styled.div`
 `;
 
 const LocationName = styled(BorderBlock)`
-  margin: auto auto 9.0667vw;
+  margin: min(38px, 10.133vw) auto 0;
   padding: 20px 24px;
+`;
+
+const ButtonStyled = styled(ButtonCentered)`
+  margin-top: auto;
+  margin-bottom: 9.0667vw;
+  @media screen and (min-width: 700px) {
+    padding: 20px;
+  }
+`;
+
+const Arrow = styled(NextArrow)`
+  height: 16px;
+  width: 75px;
+  
+  @media screen and (min-width: 700px) {
+    height: 24px;
+    width: 113px;
+  }
 `;
 
 export const LocationWrapper = (props) => {
     const {bg, text, isScaled} = props;
     const {next} = useProgress();
-
-    useEffect(() => {
-        setTimeout(() => next(), 1500);
-    }, [next]);
 
     const BgComponent = isScaled ? BackgroundScaled : Background;
     return (
@@ -34,6 +50,7 @@ export const LocationWrapper = (props) => {
                     <Description>{text}</Description>
                     {props.children}
                 </LocationName>
+                <ButtonStyled hasSvg onClick={next}><Arrow/></ButtonStyled>
             </ContentWrapper>
         </Wrapper>
     );

@@ -57,7 +57,7 @@ export const PreInteract3 = () => {
                             'Нужно разобраться и собрать всё воедино, пока что выглядит, как абракадабра…'
                         }
                     </DescriptionMdBold>
-                    <ButtonCentered width={'65vw'} onClick={next}>Что у нас тут?</ButtonCentered>
+                    <ButtonCentered onClick={next}>Что у нас тут?</ButtonCentered>
                     <Rectangles />
                 </TextBlock>
             </Wrapper>

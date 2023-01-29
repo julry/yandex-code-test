@@ -28,6 +28,7 @@ const TextBlock = styled(Dialog)`
   width: 77vw;
   margin: min(28vw, 105px) 0 min(28vw, 105px) 12vw;
   text-align: center;
+  max-width: 550px;
 `;
 
 const Question = styled(BorderBlock)`

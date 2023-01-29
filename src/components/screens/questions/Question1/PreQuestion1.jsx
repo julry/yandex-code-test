@@ -45,7 +45,7 @@ export const PreQuestion1 = () => {
                 <DescriptionBold>
                     Выведи на экран «Hi, mates!»
                 </DescriptionBold>
-                <ButtonStyled width={'65vw'} onClick={next}>За дело</ButtonStyled>
+                <ButtonStyled onClick={next}>За дело</ButtonStyled>
             </TextBlock>
         </Wrapper>
     )

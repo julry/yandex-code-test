@@ -49,8 +49,7 @@ export const PreInteract1 = () => {
             <Wrapper>
                 <Description>
                     {
-                        'Теперь, когда ты в курсе \n' +
-                        'о некоторых преимуществах Яндекса, пришло время искать твое личное рабочее место!'
+                        'Теперь, когда ты в курсе некоторых преимуществ Яндекса, пришло время искать твое личное рабочее место!'
                     }
                 </Description>
                 <TextBlock position={'right'}>
@@ -62,7 +61,7 @@ export const PreInteract1 = () => {
                             'в сумме дают 27. Помоги стажёру подобрать верный!'
                         }
                     </DescriptionMdBold>
-                    <ButtonCentered width={'65vw'} onClick={next}>За дело</ButtonCentered>
+                    <ButtonCentered onClick={next}>За дело</ButtonCentered>
                     <Rectangles />
                 </TextBlock>
             </Wrapper>
