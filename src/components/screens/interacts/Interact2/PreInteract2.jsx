@@ -56,7 +56,7 @@ export const PreInteract2 = () => {
                             'Ой, кажется, у неё сегодня просто плохое настроение :(  Подбери нужные цвета для его поднятия!'
                         }
                     </DescriptionMdBold>
-                    <ButtonCentered width={'65vw'} onClick={next}>За дело</ButtonCentered>
+                    <ButtonCentered onClick={next}>За дело</ButtonCentered>
                     <Rectangles />
                 </TextBlock>
             </Wrapper>

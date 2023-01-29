@@ -76,7 +76,7 @@ export const PostQuestion1 = () => {
                     <PurpleRectangle />
                     <YellowRectangle />
                 </TextBlock>
-                <ButtonCentered width={'65vw'} onClick={next}>Конечно, круто!</ButtonCentered>
+                <ButtonCentered onClick={next}>Конечно, круто!</ButtonCentered>
             </Wrapper>
         </>
     );

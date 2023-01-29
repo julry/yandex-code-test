@@ -26,6 +26,10 @@ const Wrapper = styled(ContentWrapper)`
   @media screen and (max-width: 315px) {
     --circleWidth: 45px;
   }
+
+  @media screen and (min-width: 700px) {
+    --circleWidth: 85px;
+  }
 `;
 
 const Line = styled.div`
@@ -61,6 +65,15 @@ const Rhombus = styled(Shape)`
   & + & {
     margin-left: 15px;
   }
+  
+  @media screen and (min-width: 700px) {
+    height: 30.5px;
+    width: 30.5px;
+    
+    & + & {
+      margin-left: 25px;
+    }
+  }
 `;
 
 const TriesWrapper = styled.div`
@@ -69,6 +82,11 @@ const TriesWrapper = styled.div`
   margin: 4.53vw 0 0 min(73px, 19.4666vw);
   color: #ABABAB;
   font-size: 12px;
+  
+  @media screen and (min-width: 450px) {
+    font-size: 18px;
+    margin:  4.53vw auto 0;
+  }
 `;
 
 const RhombusLine = styled(Line)`
@@ -168,7 +186,6 @@ export const Interact2 = () => {
                     ))}
                 </CircleLine>
                 <ButtonCentered
-                    width={'64vw'}
                     onClick={onAcceptTry}
                     disabled={currentColors.length !== CIRCLES_AMOUNT}
                 >
@@ -183,7 +200,7 @@ export const Interact2 = () => {
                             'Ура, она всё же улыбнулась! :)'
                         }
                     </DescriptionMd>
-                    <ButtonModalStyled hasSvg onClick={next} width={'65vw'}><Arrow/></ButtonModalStyled>
+                    <ButtonModalStyled hasSvg onClick={next}><Arrow/></ButtonModalStyled>
                 </LooseModal>
             ))}
             {

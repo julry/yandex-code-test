@@ -20,11 +20,19 @@ const LocationName = styled(BorderBlock)`
 const ButtonStyled = styled(ButtonCentered)`
   margin-top: auto;
   margin-bottom: 9.0667vw;
+  @media screen and (min-width: 700px) {
+    padding: 20px;
+  }
 `;
 
 const Arrow = styled(NextArrow)`
   height: 16px;
   width: 75px;
+  
+  @media screen and (min-width: 700px) {
+    height: 24px;
+    width: 113px;
+  }
 `;
 
 export const LocationWrapper = (props) => {
@@ -42,7 +50,7 @@ export const LocationWrapper = (props) => {
                     <Description>{text}</Description>
                     {props.children}
                 </LocationName>
-                <ButtonStyled hasSvg onClick={next} width={'65vw'}><Arrow/></ButtonStyled>
+                <ButtonStyled hasSvg onClick={next}><Arrow/></ButtonStyled>
             </ContentWrapper>
         </Wrapper>
     );

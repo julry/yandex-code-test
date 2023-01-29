@@ -61,7 +61,7 @@ export const PreInteract1 = () => {
                             'в сумме дают 27. Помоги стажёру подобрать верный!'
                         }
                     </DescriptionMdBold>
-                    <ButtonCentered width={'65vw'} onClick={next}>За дело</ButtonCentered>
+                    <ButtonCentered onClick={next}>За дело</ButtonCentered>
                     <Rectangles />
                 </TextBlock>
             </Wrapper>

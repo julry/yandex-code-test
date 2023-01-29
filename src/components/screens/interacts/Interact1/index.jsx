@@ -29,6 +29,10 @@ const Wrapper = styled(ContentWrapper)`
   @media screen and (max-width: 300px) {
     --cellWidth: 45px;
   }
+  
+  @media screen and (min-width: 700px) {
+    --cellWidth: 75px;
+  }
 `;
 
 const Line = styled.div`
@@ -230,7 +234,7 @@ export const Interact1 = () => {
                                     'Ты почти у цели! У тебя есть ещё 5 попыток. В этот раз обязательно получится ;)'
                                 }
                             </DescriptionMd>
-                            <ButtonModalStyled onClick={onRetry} width={'65vw'}>Подобрать снова</ButtonModalStyled>
+                            <ButtonModalStyled onClick={onRetry}>Подобрать снова</ButtonModalStyled>
                         </LooseModal>
                     ) : (
                         <LooseModal>
@@ -240,7 +244,7 @@ export const Interact1 = () => {
                                     '\n' +
                                     'Ответ: ' + ANSWER.join('')}
                             </DescriptionMd>
-                            <ButtonModalStyled hasSvg onClick={next} width={'65vw'}><Arrow/></ButtonModalStyled>
+                            <ButtonModalStyled hasSvg onClick={next}><Arrow/></ButtonModalStyled>
                         </LooseModal>
                     )
             )}

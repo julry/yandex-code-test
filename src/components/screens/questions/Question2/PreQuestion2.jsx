@@ -59,7 +59,7 @@ export const PreQuestion2 = () => {
                             'Дебажинг?'
                         }
                     </DescriptionMdBold>
-                    <ButtonCentered width={'65vw'} onClick={next}>За дело</ButtonCentered>
+                    <ButtonCentered onClick={next}>За дело</ButtonCentered>
                     <Rectangles />
                 </TextBlock>
             </Wrapper>

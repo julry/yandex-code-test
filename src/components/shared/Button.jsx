@@ -14,6 +14,10 @@ const StyledButton = styled.button`
   max-width: 245px;
   border-radius: 5px;
   transition: background-color 0.3s ease-in, box-shadow 0.3s ease-in;
+
+  @media screen and (min-width: 700px) {
+    max-width: 300px;
+  }
 `;
 
 export const Button = (props) => {
