@@ -1,16 +1,19 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { ContentWrapper } from '../../../shared/wrappers';
-import { RulesText } from '../../../shared/styledTexts';
+import { DescriptionMd, RulesText } from '../../../shared/styledTexts';
 import { colors } from '../../../../constants/colors';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { Rules2 } from './Rules2';
 import { FinishModal } from './FinishModal';
 import { useProgress } from '../../../../hooks/useProgress';
+import { LooseModal } from '../../../shared/LooseModal';
+import { NextArrow } from '../../../shared/svg/NextArrow';
 
 const ANSWER = ['#E72525', '#F8791D', '#FCCD00', '#62B146'];
 const TRIES_AMOUNT = 5;
 const CIRCLES_AMOUNT = 4;
+const TOTAL_TRIES = 2;
 const COLORS = ['#E72525', '#5A50E2', '#1495CF', '#62B146', '#FCCD00', '#F8791D', '#FFFFFF', '#D7D7D7'];
 
 const Wrapper = styled(ContentWrapper)`
@@ -54,6 +57,7 @@ const Rhombus = styled(Shape)`
   transform: rotate(45deg);
   height: 16.5px;
   width: 16.5px;
+
   & + & {
     margin-left: 15px;
   }
@@ -71,6 +75,16 @@ const RhombusLine = styled(Line)`
   margin-left: min(9.8667vw, 37px);
 `;
 
+const ButtonModalStyled = styled(ButtonCentered)`
+  margin-top: 5.5vw;
+`;
+
+
+const Arrow = styled(NextArrow)`
+  height: 16px;
+  width: 78px;
+`;
+
 export const Interact2 = () => {
     const {next} = useProgress();
     const getArray = (length, content) => {
@@ -83,8 +97,10 @@ export const Interact2 = () => {
     const [tries, setTries] = useState(initialTries);
     const [currentTry, setCurrentTry] = useState(0);
     const [currentColors, setCurrentColors] = useState([]);
-    const [finishModal, setFinishModal] = useState(false);
-    const [rulesModal, setRulesModal] = useState(true);
+    const [finishModal, setFinishModal] = useState({shown: false});
+    const [rulesModal, setRulesModal] = useState({shown: true, isFirstTime: true});
+    const [totalTries, setTotalTries] = useState(TOTAL_TRIES);
+
 
     const circles = getArray(CIRCLES_AMOUNT, () => '');
 
@@ -98,7 +114,8 @@ export const Interact2 = () => {
     const onRetry = useCallback(() => {
         setTries(initialTries);
         setCurrentTry(0);
-    }, [setTries, setCurrentTry, initialTries]);
+        setTotalTries(total => --total);
+    }, [setTries, setCurrentTry, initialTries, setTotalTries]);
 
     const onAcceptTry = useCallback(() => {
         const colorIds = [...(new Set(currentColors.map(color => color.id)))];
@@ -106,25 +123,33 @@ export const Interact2 = () => {
             if (ANSWER.includes(COLORS[id])) res += 1;
             return res;
         }, 0);
-
         const newTries = [...tries];
-        newTries[currentTry] = getArray(amount, {bg: 'white'});
+
+        newTries[currentTry] = currentColors
+            .map((color) => (
+                {bg: ANSWER.includes(color.bg) ? 'white' : null}
+            ));
         setTries([...newTries]);
+
         if (amount === CIRCLES_AMOUNT) {
-            setFinishModal(true);
+            setFinishModal({shown: true, isWin: true});
             setTimeout(() => {
-                next()
+                next();
             }, 1500);
         }
         if (currentTry + 1 >= TRIES_AMOUNT) {
-            onRetry();
+            if (totalTries > 1) {
+                onRetry();
+            } else {
+                setFinishModal({shown: true, isLose: true});
+            }
         } else setCurrentTry(id => id + 1);
-    }, [tries, currentColors, currentTry, onRetry, next]);
+    }, [tries, currentColors, currentTry, onRetry, next, totalTries]);
 
     return (
         <>
-            <Wrapper isModal={finishModal || rulesModal}>
-                <RulesText onClick={() => setRulesModal(true)}>Правила</RulesText>
+            <Wrapper isModal={finishModal.shown || rulesModal.shown}>
+                <RulesText onClick={() => setRulesModal({shown: true, isFirstTime: false})}>Правила</RulesText>
                 {tries.map((tr, ind) => (
                     <TriesWrapper key={'wrapper_' + ind}>
                         {ind + 1}
@@ -138,7 +163,8 @@ export const Interact2 = () => {
 
                 <CircleLine>
                     {circles.map((_, ind) => (
-                        <Circle key={'cellN_' + ind} onClick={() => onCircleClick(ind)} background={currentColors[ind]?.bg}/>
+                        <Circle key={'cellN_' + ind} onClick={() => onCircleClick(ind)}
+                                background={currentColors[ind]?.bg}/>
                     ))}
                 </CircleLine>
                 <ButtonCentered
@@ -149,9 +175,22 @@ export const Interact2 = () => {
                     Отправить
                 </ButtonCentered>
             </Wrapper>
-            {finishModal && <FinishModal/>}
+            {finishModal.shown && (finishModal.isWin ? <FinishModal/> : (
+                <LooseModal>
+                    <DescriptionMd>
+                        {
+                            'Видимо, вы на разных языках говорили с машиной, но её рассмешил ваш немного неловкий диалог. \n' +
+                            'Ура, она всё же улыбнулась! :)'
+                        }
+                    </DescriptionMd>
+                    <ButtonModalStyled hasSvg onClick={next} width={'65vw'}><Arrow/></ButtonModalStyled>
+                </LooseModal>
+            ))}
             {
-                rulesModal && <Rules2 close={() => setRulesModal(false)}/>
+                rulesModal.shown && <Rules2
+                    close={() => setRulesModal({shown: false, isFirstTime: false})}
+                    firstTime={rulesModal.isFirstTime}
+                />
             }
         </>
     );

@@ -46,11 +46,12 @@ export const questions = {
                 '   public static void main(String[] args) {\n' +
                 '          for (int i = 1; i <= 100; i++)\n' +
                 '          {\n' +
-                'System.out.print(i);\n' +
-                '}\n' +
+                '               System.out.print(i);\n' +
+                '           }\n' +
                 '    }\n' +
                 '}',
             buttonText: 'Done',
+            questionSize: 'sm',
             answers: [
                 {
                     id: '1',
@@ -99,6 +100,7 @@ export const questions = {
                 '             console.log(counter);\n' +
                 '}',
             buttonText: 'Done',
+            questionSize: 'sm',
             answers: [
                 {
                     id: '1',
@@ -145,6 +147,7 @@ export const questions = {
                 'Какая ошибка в него прокралась?',
             question: 'print(range(100, 0, -1))',
             buttonText: 'Done',
+            questionSize: 'md',
             answers: [
                 {
                     id: '1',
@@ -220,6 +223,7 @@ export const questions = {
                 'for (i = 100; i > 0; --i)\n' +
                 '       printf("%d\\n", i);',
             buttonText: 'Done',
+            questionSize: 'md',
             answers: [
                 {
                     id: '1',
@@ -270,6 +274,7 @@ export const questions = {
                 '        print(numbers)\n' +
                 '}',
             buttonText: 'Done',
+            questionSize: 'md',
             answers: [
                 {
                     id: '1',
@@ -324,6 +329,7 @@ export const questions = {
                 '    println(i)\n' +
                 '}\n',
             buttonText: 'Done',
+            questionSize: 'md',
             answers: [
                 {
                     id: '1',
