@@ -16,9 +16,13 @@ const Wrapper = styled(ContentWrapper)`
 
 const TextBlock = styled(Dialog)`
   position: relative;
-  padding: 4.533vw 4.5333vw 4.5333vw 5.8vw;
+  padding: 4.533vw min(17px, 4.5333vw) 4.5333vw min(21px, 5.8vw);
   width: 86.133vw;
   margin: min(24.8vw, 93px) 0 min(35.466vw, 133px) 6.4vw;
+  
+  @media screen and (min-width: 700px) {
+    padding: 4.533vw min(25px, 4.5333vw) 4.5333vw min(30px, 5.8vw);
+  }
 `;
 
 const ManStyled = styled(Man)`
@@ -62,8 +66,8 @@ export const PostQuestion2 = () => {
                     <MentorName>Ментор</MentorName>
                     <ManStyled/>
                     <DialogText>
-                        {'Ты молодец! Созвон прошел успешно, первая задача \n' +
-                            'выполнена — робот вливается \n' +
+                        {'Ты молодец! Созвон прошел успешно, первая задача ' +
+                            'выполнена — робот вливается ' +
                             'в команду, и его тепло принимают!'}
                         <br/><br/>
                         {'Пора пойти с коллегами на брейк. Кофе, конечно, он выпить не может, но одновременно разрядить \n' +
