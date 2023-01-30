@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
+import { workPlace, preInteract1 } from '../../../../constants/images';
 import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
-import { workPlace } from '../../../../constants/images';
 import { Description, DescriptionMdBold } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
-import rectangles from '../../../shared/svg/rectangles/preInteract1.svg';
 import { Dialog } from '../../../shared/Dialog';
 import { SvgWrapper } from '../../../shared/SvgWrapper';
 
@@ -19,8 +18,8 @@ const TextBlock = styled(Dialog)`
   flex-direction: column;
   padding: 4.533vw;
   width: 100%;
-  margin: min(58.6vw, 210px) 0 0 0;
-  
+  margin: min(37.866vw, 142px) 0 0 0;
+
   & ${ButtonCentered} {
     margin-top: min(5.3vw, 20px);
   }
@@ -31,7 +30,7 @@ const TextBlock = styled(Dialog)`
 `;
 
 const Rectangles = styled(SvgWrapper)`
-  background: url(${rectangles}) -4.5vw 0;
+  background: url(${preInteract1}) -4.5vw 0;
   width: 113.9333vw;
   left: -5.5vw;
   top: -11.7vw;
@@ -49,7 +48,13 @@ export const PreInteract1 = () => {
             <Wrapper>
                 <Description>
                     {
-                        'Теперь, когда ты в курсе некоторых преимуществ Яндекса, пришло время искать твое личное рабочее место!'
+                        'Теперь, когда ты в курсе некоторых преимуществ Яндекса, нужно найти твое личное рабочее место.'
+                    }
+                </Description>
+                <br/>
+                <Description>
+                    {
+                        'А, вот и оно! Пора подключаться на первый созвон с командой!'
                     }
                 </Description>
                 <TextBlock position={'right'}>
@@ -62,7 +67,7 @@ export const PreInteract1 = () => {
                         }
                     </DescriptionMdBold>
                     <ButtonCentered onClick={next}>За дело</ButtonCentered>
-                    <Rectangles />
+                    <Rectangles/>
                 </TextBlock>
             </Wrapper>
         </>

@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { LocationWrapper } from '../../shared/LocationWrapper';
 import { SvgWrapper } from '../../shared/SvgWrapper';
-import rectangles from '../../shared/svg/rectangles/workPlace.svg';
-import { workPlace } from '../../../constants/images';
+import { workPlace, workPlaceRect } from '../../../constants/images';
 
 const Rectangles = styled(SvgWrapper)`
-  background: url(${rectangles});
+  background: url(${workPlaceRect});
   width: 243px;
   left: -26px;
   top: -21px;

@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { LocationWrapper } from '../../shared/LocationWrapper';
 import { SvgWrapper } from '../../shared/SvgWrapper';
-import rectangles from '../../shared/svg/rectangles/meeting.svg';
-import { meeting } from '../../../constants/images';
+import { meeting, meetingRect } from '../../../constants/images';
 
 const Rectangles = styled(SvgWrapper)`
-  background: url(${rectangles});
+  background: url(${meetingRect});
   width: 257px;
   left: -32px;
   top: -21px;

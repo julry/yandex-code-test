@@ -1,6 +1,12 @@
 import { Intro } from './components/screens/Intro';
 import { Reception } from './components/screens/locations/Reception';
-import { coffeeBrake, meeting, reception, workPlace, workPlace2 } from './constants/images';
+import {
+    coffeeBrake, meeting, reception, workPlace, workPlace2,
+    coffee, interact2Finish, meetingRect, language,
+    pre1, preInteract1, preInteract2, preInteract3,
+    preQuestion2, receptionRect, winModal,
+    workPlaceRect, workPlace2Rect, welcome
+} from './constants/images';
 import { Question0 } from './components/screens/questions/Question0';
 import { Meeting } from './components/screens/locations/Meeting';
 import { PreQuestion1 } from './components/screens/questions/Question1/PreQuestion1';
@@ -26,22 +32,22 @@ export const screens = [
     {
         id: 0,
         component: Intro,
-        preloadImages: [reception],
+        preloadImages: [reception, receptionRect],
     },
     {
         id: 1,
         component: Reception,
-        preloadImages: [meeting],
+        preloadImages: [meeting, language, meetingRect],
     },
     {
         id: 2,
         component: Question0,
-        preloadImages: [workPlace],
+        preloadImages: [workPlace, pre1],
     },
     {
         id: 3,
         component: Meeting,
-        preloadImages: [],
+        preloadImages: [workPlaceRect, winModal],
     },
     {
         id: 3,
@@ -56,17 +62,17 @@ export const screens = [
     {
         id: 5,
         component: WorkPlace,
-        preloadImages: [],
+        preloadImages: [preInteract1],
     },
     {
         id: 6,
         component: PostQuestion1,
-        preloadImages: [],
+        preloadImages: [preQuestion2],
     },
     {
         id: 7,
         component: PreInteract1,
-        preloadImages: [],
+        preloadImages: [coffee],
     },
     {
         id: 8,
@@ -76,27 +82,27 @@ export const screens = [
     {
         id: 9,
         component: PreQuestion2,
-        preloadImages: [],
+        preloadImages: [preInteract2],
     },
     {
         id: 10,
         component: Question2,
-        preloadImages: [],
+        preloadImages: [workPlace2Rect],
     },
     {
         id: 11,
         component: CoffeeBrake,
-        preloadImages: [],
+        preloadImages: [preInteract3],
     },
     {
         id: 12,
         component: PostQuestion2,
-        preloadImages: [],
+        preloadImages: [welcome],
     },
     {
         id: 13,
         component: PreInteract2,
-        preloadImages: [],
+        preloadImages: [interact2Finish],
     },
     {
         id: 14,

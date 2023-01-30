@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import rectangles from '../../shared/svg/rectangles/language.svg';
 import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../shared/wrappers';
 import {
     Description,
@@ -9,7 +8,7 @@ import {
     RegularDescription
 } from '../../shared/styledTexts';
 import { BorderBlock } from '../../shared/BorderBlock';
-import { reception } from '../../../constants/images';
+import { reception, language } from '../../../constants/images';
 import { LANGUAGE_TYPE } from '../../../constants/languageTypes';
 import { Button } from '../../shared/Button';
 import { useProgress } from '../../../hooks/useProgress';
@@ -65,7 +64,7 @@ const Answer = styled(Button)`
 `;
 
 const Rectangles = styled(SvgWrapper)`
-  background: url(${rectangles}) -3.4667vw 0;
+  background: url(${language}) -3.4667vw 0;
   width: 106.9333vw;
   left: -20vw;
   top: -5.3vw;
@@ -90,7 +89,8 @@ export const Question0 = () => {
             </BackgroundWrapper>
             <Wrapper>
                 <Description>
-                    {'К роботу-стажёру подходит\nментор:'}
+                    {'А вот и первая встреча! \n' +
+                        'К роботу-стажеру подходит ментор:'}
                 </Description>
                 <TextBlock>
                     <MentorName>Ментор</MentorName>

@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
 import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
-import { coffeeBrake } from '../../../../constants/images';
+import { coffeeBrake, preInteract2 } from '../../../../constants/images';
 import { Description, DescriptionMdBold } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
-import rectangles from '../../../shared/svg/rectangles/preInteract2.svg';
 import { Dialog } from '../../../shared/Dialog';
 import { SvgWrapper } from '../../../shared/SvgWrapper';
 
@@ -27,7 +26,7 @@ const TextBlock = styled(Dialog)`
 `;
 
 const Rectangles = styled(SvgWrapper)`
-  background: url(${rectangles}) 0 0;
+  background: url(${preInteract2}) 0 0;
   width: 100vw;
   left: -5.5vw;
   top: -9.3vw;

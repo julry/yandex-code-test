@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { QuestionWrapper } from '../../../shared/QuestionWrapper';
-import { getQuestionById } from '../../../../utils/getQuestionById';
+import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
 import { getCorrectAnswerById } from '../../../../utils/getCorrectAnswerById';
-import styled from 'styled-components';
+import { getQuestionById } from '../../../../utils/getQuestionById';
 import { Question1Purple } from '../../../shared/svg/rectangles/Question1Purple';
 import { QuestionYellow } from '../../../shared/svg/rectangles/QuestionYellow';
+import { QuestionWrapper } from '../../../shared/QuestionWrapper';
 
 const PurpleRectangle = styled(Question1Purple)`
   position: absolute;
