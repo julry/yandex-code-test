@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from '../../constants/colors';
 import { CloseIcon } from './svg/CloseIcon';
 
 const Wrapper = styled.div`
@@ -34,7 +33,6 @@ const CloseIconWrapper = styled.div`
   width: 32px;
   height: 32px;
   padding: 8px;
-  border: 1px dashed ${colors.textGray};
 `;
 
 const CloseIconStyled = styled(CloseIcon)`

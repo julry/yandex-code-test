@@ -4,8 +4,7 @@ import { Background, BackgroundScaled, BackgroundWrapper, ContentWrapper } from 
 import { BorderBlock } from './BorderBlock';
 import { Description } from './styledTexts';
 import { useProgress } from '../../hooks/useProgress';
-import { ButtonCentered } from './ButtonCentered';
-import { NextArrow } from './svg/NextArrow';
+import { ArrowBtn } from './ArrowBtn';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -17,7 +16,7 @@ const LocationName = styled(BorderBlock)`
   padding: 20px 24px;
 `;
 
-const ButtonStyled = styled(ButtonCentered)`
+const ButtonStyled = styled(ArrowBtn)`
   margin-top: auto;
   margin-bottom: 9.0667vw;
   @media screen and (min-width: 700px) {
@@ -25,15 +24,6 @@ const ButtonStyled = styled(ButtonCentered)`
   }
 `;
 
-const Arrow = styled(NextArrow)`
-  height: 16px;
-  width: 75px;
-  
-  @media screen and (min-width: 700px) {
-    height: 24px;
-    width: 113px;
-  }
-`;
 
 export const LocationWrapper = (props) => {
     const {bg, text, isScaled} = props;
@@ -50,7 +40,7 @@ export const LocationWrapper = (props) => {
                     <Description>{text}</Description>
                     {props.children}
                 </LocationName>
-                <ButtonStyled hasSvg onClick={next}><Arrow/></ButtonStyled>
+                <ButtonStyled onClick={next} />
             </ContentWrapper>
         </Wrapper>
     );
