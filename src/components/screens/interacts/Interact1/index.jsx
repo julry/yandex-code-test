@@ -6,12 +6,11 @@ import { colors } from '../../../../constants/colors';
 import { DoneMark } from '../../../shared/svg/DoneMark';
 import { WinModal } from '../../../shared/WinModal';
 import { LooseModal } from '../../../shared/LooseModal';
-import { NextArrow } from '../../../shared/svg/NextArrow';
-import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { useProgress } from '../../../../hooks/useProgress';
 import { RulesModal } from '../../../shared/RulesModal';
 import { Rules1Yellow } from '../../../shared/svg/rectangles/Rules1Yellow';
 import { Rules1Purple } from '../../../shared/svg/rectangles/Rules1Purple';
+import { ArrowBtn } from '../../../shared/ArrowBtn';
 
 const ANSWER = [9, 5, 3, 4, 6];
 const TRIES_AMOUNT = 5;
@@ -87,12 +86,7 @@ const DoneBtn = styled(Cell)`
   margin: 0 auto;
 `;
 
-const Arrow = styled(NextArrow)`
-  height: 16px;
-  width: 78px;
-`;
-
-const ButtonModalStyled = styled(ButtonCentered)`
+const ButtonModalStyled = styled(ArrowBtn)`
   margin-top: 5.5vw;
 `;
 
@@ -244,7 +238,7 @@ export const Interact1 = () => {
                                     '\n' +
                                     'Ответ: ' + ANSWER.join('')}
                             </DescriptionMd>
-                            <ButtonModalStyled hasSvg onClick={next}><Arrow/></ButtonModalStyled>
+                            <ButtonModalStyled onClick={next}/>
                         </LooseModal>
                     )
             )}

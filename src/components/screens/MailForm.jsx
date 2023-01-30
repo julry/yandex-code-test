@@ -240,7 +240,9 @@ export const MailForm = () => {
                             />
                         </InputWrapper>
                         <LabelStyled
-                            onTouchStart={() => setAgreement(value => !value)}
+                            onClick={(e) => {
+                                if (e.detail === 1) setAgreement(value => !value);
+                            }}
                         >
                             <InputCheckboxStyled
                                 type={'radio'}
@@ -253,7 +255,7 @@ export const MailForm = () => {
                                 <TextStyled>
                                     {'Я согласен на '}
                                     <PersonalDataLink
-                                        onTouchStart={(e) => onOpen(e)}
+                                        onClick={(e) => onOpen(e)}
                                     >
                                         обработку персональных данных
                                     </PersonalDataLink>

@@ -8,8 +8,8 @@ import { colors } from '../../constants/colors';
 import { ButtonCentered } from './ButtonCentered';
 import { WinModal } from './WinModal';
 import { getPostAnswerById } from '../../utils/getPostAnswerById';
-import { NextArrow } from './svg/NextArrow';
 import { LooseModal } from './LooseModal';
+import { ArrowBtn } from './ArrowBtn';
 
 const Wrapper = styled(ContentWrapper)`
   padding: 8.5vw 5.5vw 8vw;
@@ -44,12 +44,8 @@ const ButtonStyled = styled(ButtonCentered)`
   margin-top: min(8.2vw, 31px);
 `;
 
-const Arrow = styled(NextArrow)`
-  height: 16px;
-  width: 78px;
-`;
 
-const ButtonModalStyled = styled(ButtonCentered)`
+const ButtonModalStyled = styled(ArrowBtn)`
   margin-top: 5.5vw;
 `;
 
@@ -130,7 +126,7 @@ export const QuestionWrapper = (props) => {
                             <DescriptionMd>
                                 {getPostAnswerById(question?.id).getText(correctAnswer?.text.replaceAll('\n\n', '\n'))}
                             </DescriptionMd>
-                            <ButtonModalStyled hasSvg onClick={next} width={'65vw'}><Arrow/></ButtonModalStyled>
+                            <ButtonModalStyled onClick={next}/>
                         </LooseModal>
                     )
             )}

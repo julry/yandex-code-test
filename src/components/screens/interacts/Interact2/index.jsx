@@ -1,14 +1,14 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { ContentWrapper } from '../../../shared/wrappers';
-import { DescriptionMd, RulesText } from '../../../shared/styledTexts';
+import { DescriptionMd, RegularText, RulesText } from '../../../shared/styledTexts';
 import { colors } from '../../../../constants/colors';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { Rules2 } from './Rules2';
 import { FinishModal } from './FinishModal';
 import { useProgress } from '../../../../hooks/useProgress';
 import { LooseModal } from '../../../shared/LooseModal';
-import { NextArrow } from '../../../shared/svg/NextArrow';
+import { ArrowBtn } from '../../../shared/ArrowBtn';
 
 const ANSWER = ['#E72525', '#F8791D', '#FCCD00', '#62B146'];
 const TRIES_AMOUNT = 5;
@@ -79,28 +79,23 @@ const Rhombus = styled(Shape)`
 const TriesWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 4.53vw 0 0 min(73px, 19.4666vw);
+  margin:  4.53vw auto 0;
+  position: relative;
+`;
+
+const TriesNumber = styled(RegularText)`
+  position: absolute;
+  left: max(-9.8667vw, -37px);
   color: #ABABAB;
   font-size: 12px;
-  
+
   @media screen and (min-width: 450px) {
     font-size: 18px;
-    margin:  4.53vw auto 0;
   }
 `;
 
-const RhombusLine = styled(Line)`
-  margin-left: min(9.8667vw, 37px);
-`;
-
-const ButtonModalStyled = styled(ButtonCentered)`
+const ButtonModalStyled = styled(ArrowBtn)`
   margin-top: 5.5vw;
-`;
-
-
-const Arrow = styled(NextArrow)`
-  height: 16px;
-  width: 78px;
 `;
 
 export const Interact2 = () => {
@@ -170,12 +165,12 @@ export const Interact2 = () => {
                 <RulesText onClick={() => setRulesModal({shown: true, isFirstTime: false})}>Правила</RulesText>
                 {tries.map((tr, ind) => (
                     <TriesWrapper key={'wrapper_' + ind}>
-                        {ind + 1}
-                        <RhombusLine>
+                        <TriesNumber>{ind + 1}</TriesNumber>
+                        <Line>
                             {tr.map((cell, i) => (
                                 <Rhombus key={'cell_' + i} background={cell?.bg}/>
                             ))}
-                        </RhombusLine>
+                        </Line>
                     </TriesWrapper>
                 ))}
 
@@ -200,7 +195,7 @@ export const Interact2 = () => {
                             'Ура, она всё же улыбнулась! :)'
                         }
                     </DescriptionMd>
-                    <ButtonModalStyled hasSvg onClick={next}><Arrow/></ButtonModalStyled>
+                    <ButtonModalStyled onClick={next}/>
                 </LooseModal>
             ))}
             {
