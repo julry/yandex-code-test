@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
 import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../../../shared/wrappers';
-import { workPlace2 } from '../../../../constants/images';
+import { workPlace2, welcome } from '../../../../constants/images';
 import { Description } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { BorderBlock } from '../../../shared/BorderBlock';
-import welcome from '../../../shared/svg/welcome.svg';
 import { Post3Purple } from '../../../shared/svg/rectangles/Post3Purple';
 import { Post3Yellow } from '../../../shared/svg/rectangles/Post3Yellow';
 

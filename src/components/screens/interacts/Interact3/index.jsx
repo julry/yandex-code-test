@@ -4,7 +4,7 @@ import { ContentWrapper } from '../../../shared/wrappers';
 import { MediumText, RegularDescription, RulesText } from '../../../shared/styledTexts';
 import { useProgress } from '../../../../hooks/useProgress';
 import { RulesModal } from '../../../shared/RulesModal';
-import welcome from '../../../shared/svg/welcome.svg';
+import { welcome } from '../../../../constants/images';
 import { BorderBlock } from '../../../shared/BorderBlock';
 import { shuffle } from '../../../../utils/shuffle';
 import { Post3Purple } from '../../../shared/svg/rectangles/Post3Purple';

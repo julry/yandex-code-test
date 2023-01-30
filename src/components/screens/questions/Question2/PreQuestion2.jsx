@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
 import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
-import { workPlace } from '../../../../constants/images';
+import { workPlace, preQuestion2 } from '../../../../constants/images';
 import { Description, DescriptionMdBold } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
-import rectangles from '../../../shared/svg/rectangles/preQuestion2.svg';
 import { Dialog } from '../../../shared/Dialog';
 import { SvgWrapper } from '../../../shared/SvgWrapper';
 
@@ -28,7 +27,7 @@ const TextBlock = styled(Dialog)`
 `;
 
 const Rectangles = styled(SvgWrapper)`
-  background: url(${rectangles}) -9.8vw 0;
+  background: url(${preQuestion2}) -9.8vw 0;
   width: 113.0666vw;
   left: -5.5vw;
   top: -8.8vw;

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
+import { pre1 } from '../../../../constants/images';
 import { Description, DescriptionBold } from '../../../shared/styledTexts';
-import rectangles from '../../../shared/svg/rectangles/pre1.svg';
 import { BorderBlock } from '../../../shared/BorderBlock';
 import { SvgWrapper } from '../../../shared/SvgWrapper';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
@@ -22,7 +22,7 @@ const TextBlock = styled(BorderBlock)`
 `;
 
 const Rectangles = styled(SvgWrapper)`
-  background: url(${rectangles}) -8.3vw 0;
+  background: url(${pre1}) -8.3vw 0;
   width: 113vw;
   left: -5.5vw;
   top: -9.8vw;

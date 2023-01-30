@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { LocationWrapper } from '../../shared/LocationWrapper';
 import { SvgWrapper } from '../../shared/SvgWrapper';
-import rectangles from '../../shared/svg/rectangles/coffee.svg';
-import { coffeeBrake } from '../../../constants/images';
+import { coffeeBrake, coffee } from '../../../constants/images';
 
 const Rectangles = styled(SvgWrapper)`
-  background: url(${rectangles});
+  background: url(${coffee});
   width: 234px;
   left: -36px;
   top: -11px;

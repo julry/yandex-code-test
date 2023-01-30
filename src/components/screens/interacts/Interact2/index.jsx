@@ -1,14 +1,14 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { colors } from '../../../../constants/colors';
+import { useProgress } from '../../../../hooks/useProgress';
 import { ContentWrapper } from '../../../shared/wrappers';
 import { DescriptionMd, RegularText, RulesText } from '../../../shared/styledTexts';
-import { colors } from '../../../../constants/colors';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
-import { Rules2 } from './Rules2';
-import { FinishModal } from './FinishModal';
-import { useProgress } from '../../../../hooks/useProgress';
 import { LooseModal } from '../../../shared/LooseModal';
 import { ArrowBtn } from '../../../shared/ArrowBtn';
+import { FinishModal } from './FinishModal';
+import { Rules2 } from './Rules2';
 
 const ANSWER = ['#E72525', '#F8791D', '#FCCD00', '#62B146'];
 const TRIES_AMOUNT = 5;

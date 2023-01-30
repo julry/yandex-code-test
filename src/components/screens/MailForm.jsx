@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { reception } from '../../constants/images';
 import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../shared/wrappers';
@@ -194,14 +194,14 @@ export const MailForm = () => {
         })
     };
 
-    const checkValidMail = () => {
+    const checkValidMail = useCallback(() => {
         return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail);
-    };
+    }, [mail]);
 
     useEffect(() => {
         if (validMail) return;
         setValidMail(checkValidMail());
-    }, [mail])
+    }, [mail, validMail, checkValidMail])
     return (
         <>
             <BackgroundWrapper>
