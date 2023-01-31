@@ -7,7 +7,7 @@ const INITIAL_ANSWERS = {};
 
 const INITIAL_PROGRESS = {
     answers: INITIAL_ANSWERS,
-    language: LANGUAGE_TYPE.Java
+    language: LANGUAGE_TYPE.CPlus
 };
 
 export function useProgressInit() {
