@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { ContentWrapper } from '../../../shared/wrappers';
 import { MediumText, RegularDescription, RulesText } from '../../../shared/styledTexts';
 import { useProgress } from '../../../../hooks/useProgress';
@@ -30,6 +30,7 @@ const YellowRectangle = styled(Post3Purple)`
   height: 58.4vw;
   max-height: 219px;
   z-index: -2;
+
   & path {
     fill: ${colors.yellow}
   }
@@ -44,6 +45,7 @@ const PurpleRectangle = styled(Post3Yellow)`
   height: 50.1333vw;
   max-height: 188px;
   z-index: -2;
+
   & path {
     fill: ${colors.purple}
   }
@@ -93,9 +95,26 @@ const PurpleRulesRectangle = styled(Rules3Purple)`
   z-index: -2;
 `;
 
+const appearBtn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+`;
+
 const ButtonStyled = styled(ButtonCentered)`
   margin-top: auto;
   margin-bottom: min(40px, 10.6vw);
+  background: transparent;
+  border-bottom: 1px solid ${colors.textGray};
+  width: fit-content;
+  padding: 1px 0;
+  border-radius: 0;
+  opacity: 0;
+  animation: ${appearBtn} ease-in 0.3s forwards;
+  animation-delay: 10s;
 `;
 
 const getRowId = (i) => Math.floor(i / CELLS_ROW_AMOUNT);
@@ -146,7 +165,7 @@ export const Interact3 = () => {
         newArr[ind1] = newArr[ind2];
         newArr[ind2] = t;
         return newArr;
-    }
+    };
 
     const onMoveCell = useCallback((ind) => {
         if (shownCells[ind].isEmpty || finished) return;
@@ -182,7 +201,7 @@ export const Interact3 = () => {
                     <PurpleRectangle/>
                     <YellowRectangle/>
                 </CellsWrapper>
-                <ButtonStyled onClick={next}>Пропустить</ButtonStyled>
+                {!rulesModal.isFirstTime && <ButtonStyled onClick={next}>Пропустить</ButtonStyled>}
             </Wrapper>
             {
                 rulesModal.shown && (

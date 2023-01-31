@@ -53,7 +53,7 @@ const Cell = styled.div`
   align-items: center;
   justify-content: center;
   background: ${({background}) => background ?? 'transparent'};
-  transition: backround 0.3s ease-in;
+  transition: background-color 0.3s ease-in;
 
   & + & {
     margin-left: -1px;
@@ -145,6 +145,7 @@ export const Interact1 = () => {
     };
 
     const onAcceptTry = useCallback(() => {
+        if (!getDoneBtnActive()) return;
         const newTries = [...tries];
         const newLine = [...tries[currentTry]];
         newTries[currentTry] = newLine.map((n, i) => {
@@ -154,9 +155,7 @@ export const Interact1 = () => {
                 if (ANSWER.indexOf(n.num) === i) {
                     bg = colors.purple;
                     correct = true;
-                } else if (newLine.findIndex(num => num.num === n.num) === i) {
-                    bg = colors.yellow;
-                }
+                } else bg = colors.yellow;
             }
             return ({...n, bg, correct});
         });
@@ -193,6 +192,10 @@ export const Interact1 = () => {
         setRulesModal({shown: false, isFirstTime: false});
     }, [setRulesModal]);
 
+    const getDoneBtnActive = useCallback(() => {
+        return tries[currentTry].filter(tr => typeof (tr.num) === 'number').length === tries[currentTry].length;
+    }, [tries, currentTry]);
+
     return (
         <>
             <Wrapper isModal={finishModal.shown || rulesModal.shown}>
@@ -217,7 +220,9 @@ export const Interact1 = () => {
                         </Line>
                     ))}
                 </ButtonsWrapper>
-                <DoneBtn background={colors.purple} onClick={onAcceptTry}><Done/></DoneBtn>
+                <DoneBtn
+                    background={getDoneBtnActive() && colors.purple}
+                    onClick={onAcceptTry}><Done/></DoneBtn>
             </Wrapper>
             {finishModal.shown && (
                 finishModal.isWin ? <WinModal/>
@@ -246,8 +251,8 @@ export const Interact1 = () => {
                 rulesModal.shown && <RulesModal close={closeRulesModal} firstTime={rulesModal.isFirstTime}>
                     <RegularDescription>
                         {
-                            'Вписывай цифры в пустые ячейки ряда так, чтобы они в сумме давали 27. Отправляй свой ответ галочкой, \n' +
-                            'как только подберешь ряд.'
+                            'Вписывай цифры в пустые ячейки ряда так, чтобы они в сумме давали 27.\nОтправляй свой ответ галочкой, ' +
+                            '\nкак только подберешь ряд.'
                         }
                         <br/><br/>
                         {'Если ячейка стала '}
