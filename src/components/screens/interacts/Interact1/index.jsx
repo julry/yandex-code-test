@@ -144,6 +144,10 @@ export const Interact1 = () => {
         setCurrentNumId(() => id + 1);
     };
 
+    const getDoneBtnActive = useCallback(() => {
+        return tries[currentTry].filter(tr => typeof (tr.num) === 'number').length === tries[currentTry].length;
+    }, [tries, currentTry]);
+
     const onAcceptTry = useCallback(() => {
         if (!getDoneBtnActive()) return;
         const newTries = [...tries];
@@ -178,7 +182,7 @@ export const Interact1 = () => {
         }
         setCurrentNumId(0);
         setCurrentTry(id => id + 1);
-    }, [tries, next, currentTry, totalTries]);
+    }, [tries, next, currentTry, totalTries, getDoneBtnActive]);
 
     const onRetry = useCallback(() => {
         setTries(initialTries);
@@ -192,9 +196,6 @@ export const Interact1 = () => {
         setRulesModal({shown: false, isFirstTime: false});
     }, [setRulesModal]);
 
-    const getDoneBtnActive = useCallback(() => {
-        return tries[currentTry].filter(tr => typeof (tr.num) === 'number').length === tries[currentTry].length;
-    }, [tries, currentTry]);
 
     return (
         <>
