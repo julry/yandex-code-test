@@ -42,7 +42,8 @@ export const questions = {
             text: 'Код должен вывести цифры\n' +
                 'от 100 до 1. \n' +
                 'Какая ошибка в него прокралась?',
-            question: '{\n' +
+            question: 'public class Main\n' +
+                '{\n' +
                 '   public static void main(String[] args) {\n' +
                 '          for (int i = 1; i <= 100; i++)\n' +
                 '          {\n' +
@@ -219,24 +220,28 @@ export const questions = {
             text: 'Код должен вывести цифры\n' +
                 'от 100 до 1. \n' +
                 'Какая ошибка в него прокралась?',
-            question: 'unsigned int i;\n' +
-                'for (i = 100; i > 0; --i)\n' +
-                '       printf("%d\\n", i);',
+            question: '#include <iostream>\n' +
+                'using namespace std;\n' +
+                'int main(){\n' +
+                '   for(int i=1;i<101;i++){\n' +
+                '       cout << i << \'\\n\';\n' +
+                '    }\n' +
+                '}',
             buttonText: 'Done',
             questionSize: 'md',
             answers: [
                 {
                     id: '1',
-                    text: 'unsigned int работает только со значениями меньше нуля'
+                    text: 'цикл выведет значения от 101 до 1'
                 },
                 {
                     id: '2',
-                    text: 'вместо %d следует использовать %u, поскольку мы выводим целые значения без знака',
+                    text: 'этот цикл выведет значения от 1 до 100',
                     isCorrect: true
                 },
                 {
                     id: '3',
-                    text: 'этот цикл выведет значения от 1 до 100'
+                    text: 'необходима ; после () цикла'
                 }
             ],
         }

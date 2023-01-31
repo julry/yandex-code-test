@@ -124,7 +124,7 @@ export const QuestionWrapper = (props) => {
                     : (
                         <LooseModal>
                             <DescriptionMd>
-                                {getPostAnswerById(question?.id).getText(correctAnswer?.text.replaceAll('\n\n', '\n'))}
+                                {getPostAnswerById(question?.id).getText(correctAnswer?.text)}
                             </DescriptionMd>
                             <ButtonModalStyled onClick={next}/>
                         </LooseModal>
