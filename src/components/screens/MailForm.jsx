@@ -29,12 +29,8 @@ const Form = styled.div`
   z-index: 3;
   margin: 0 auto;
   padding: min(4vw, 15px) 0 0;
-  width: 65vw;
-  max-width: 245px;
-  
-  @media screen and (min-width: 700px) {
-    max-width: 300px;
-  }
+  width: 75vw;
+  max-width: 300px;
 `;
 
 const Input = styled.input`
@@ -149,6 +145,8 @@ const SendBtn = styled(ButtonCentered)`
   margin-top: min(5.333vw, 20px);
   transform-origin: 50% 50%;
   animation: ${sending} ${({animation}) => animation ? '2s' : 0} infinite ease-in;
+  width: 75vw;
+  max-width: 300px;
 `;
 
 const RectanglePurple = styled(MailPurple)`
@@ -174,7 +172,6 @@ const RectangleYellow = styled(MailYellow)`
 `;
 
 export const MailForm = () => {
-    const {next} = useProgress();
     const [mail, setMail] = useState('');
     const [agreement, setAgreement] = useState(false);
     const [animation, setAnimation] = useState(false);
@@ -190,7 +187,7 @@ export const MailForm = () => {
         setAnimation(true);
         sendDataToForms({mail}).then(() => {
             setAnimation(false);
-            // openHref('')
+            openHref('https://t.me/yandex_internships_bot')
         })
     };
 
@@ -224,7 +221,7 @@ export const MailForm = () => {
                         }
                         <Medium> Яндекс.Станцию</Medium>
                         {
-                            '. Для участия в розыгрыше оставь свою почту'
+                            '.\n Для участия в розыгрыше оставь свою почту'
                         }
                     </RegularDescription>
                     <Form>
@@ -274,7 +271,7 @@ export const MailForm = () => {
                     <RectanglePurple/>
                     <RectangleYellow/>
                 </TextBlock>
-                <ButtonCentered onClick={next}>Подать заявку</ButtonCentered>
+                <ButtonCentered onClick={() => openHref('https://t.me/yandex_internships_bot')}>Подать заявку</ButtonCentered>
             </Wrapper>
         </>
     );

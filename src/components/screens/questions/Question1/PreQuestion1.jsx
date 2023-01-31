@@ -38,7 +38,11 @@ export const PreQuestion1 = () => {
     return (
         <Wrapper>
             <Description>
-                {'Принято, теперь ментору ясно, какие задачи давать роботу. Пора знакомить его с командой!'}
+                {'Принято! Теперь ментор знает, какие задачи давать роботу.'}
+            </Description>
+            <br/>
+            <Description>
+                {'Пора знакомиться с командой!'}
             </Description>
             <TextBlock>
                 <Rectangles/>

@@ -99,7 +99,7 @@ export const Question0 = () => {
                     <Rectangles/>
                 </TextBlock>
                 <Question>
-                    <RegularDescription>{'Выбери свой предпочитаемый ЯП\nдля кодинга:'}</RegularDescription>
+                    <RegularDescription>{'Выбери язык, на котором тебе больше всего нравится кодить:'}</RegularDescription>
                     <AnswersWrapper>
                         {Object.keys(LANGUAGE_TYPE).map((type) => (
                             <Answer onClick={() => onPickAnswer(LANGUAGE_TYPE[type])} key={type}>{LANGUAGE_TYPE[type]}</Answer>

@@ -10,9 +10,6 @@ import { useProgress } from '../../hooks/useProgress';
 
 const Wrapper = styled(ContentWrapper)`
   padding: 8.5vw 5.5vw;
-  @media screen and (min-width: 400px) {
-      white-space: normal;
-  }
 `;
 
 const TextBlock = styled(BorderBlock)`
@@ -31,9 +28,10 @@ const Rectangles = styled(SvgWrapper)`
 
 const TitleStyled = styled(Title)`
   margin-bottom: 4.5vw;
-  
+  white-space: pre-line;
   @media screen and (min-width: 600px) {
     text-align: center;
+    white-space: normal;
   }
 `;
 
@@ -42,7 +40,12 @@ export const Intro = () => {
     return (
         <Wrapper>
             <Description>
-                {'Сейчас ты будешь управлять экспериментальным роботом-стажёром, которого взяли\nв Яндекс. Он может генерировать\nречь и двигаться. Но все его\nдействия требуют правильно\nнаписанного кода.'}
+                {
+                    'Тебе выпала уникальная возможность: ' +
+                    'помочь экспериментальному роботу-стажёру, которого взяли в Яндекс! \n' +
+                    'Робот может генерировать речь \n' +
+                    'и двигаться. Но все его действия требуют правильно написанного кода.'
+                }
             </Description>
             <TextBlock>
                 <Rectangles/>
@@ -51,7 +54,7 @@ export const Intro = () => {
                 </DescriptionBold>
             </TextBlock>
             <TitleStyled>
-                Первый робо-рабочий день в офисе начинается!
+                {'Первый робо-рабочий день\nв офисе начинается!'}
             </TitleStyled>
             <ButtonCentered onClick={next}>Поехали</ButtonCentered>
         </Wrapper>
