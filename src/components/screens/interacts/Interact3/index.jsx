@@ -183,7 +183,7 @@ export const Interact3 = () => {
             }
             if (i === cells.length) {
                 setFinished(true);
-                setTimeout(() => next(), 5500);
+                setTimeout(() => next(), 500);
             }
         }
     }, [shownCells, setFinished, setShownCells, finished, next, cells]);

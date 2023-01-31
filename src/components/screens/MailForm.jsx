@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { reception } from '../../constants/images';
 import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../shared/wrappers';
-import { useProgress } from '../../hooks/useProgress';
 import { BorderBlock } from '../shared/BorderBlock';
 import { Medium, RegularDescription, RegularText } from '../shared/styledTexts';
 import { ButtonCentered } from '../shared/ButtonCentered';
@@ -43,7 +42,7 @@ const Input = styled.input`
   color: inherit;
   width: 100%;
   font-family: 'Yandex Sans', Tahoma, Geneva, sans-serif;
-  
+
   &:focus {
     outline: none;
   }
@@ -123,7 +122,7 @@ const InputWrapper = styled.div`
   font-size: 18px;
   color: ${colors.textGray};
   transition: border 0.3s ease-in;
-  
+
   @media screen and (max-width: 330px) {
     font-size: 16px;
   }
@@ -131,10 +130,10 @@ const InputWrapper = styled.div`
 
 const sending = keyframes`
   0% {
-      background: ${colors.purple};
+    background: ${colors.purple};
   }
   50% {
-      background: transparent;
+    background: transparent;
   }
   100% {
     background: ${colors.purple};
@@ -187,8 +186,8 @@ export const MailForm = () => {
         setAnimation(true);
         sendDataToForms({mail}).then(() => {
             setAnimation(false);
-            openHref('https://t.me/yandex_internships_bot')
-        })
+            openHref('https://t.me/yandex_internships_bot');
+        });
     };
 
     const checkValidMail = useCallback(() => {
@@ -198,7 +197,7 @@ export const MailForm = () => {
     useEffect(() => {
         if (validMail) return;
         setValidMail(checkValidMail());
-    }, [mail, validMail, checkValidMail])
+    }, [mail, validMail, checkValidMail]);
     return (
         <>
             <BackgroundWrapper>
@@ -244,7 +243,8 @@ export const MailForm = () => {
                             <InputCheckboxStyled
                                 type={'radio'}
                                 name={'agreement'}
-                                onChange={() => {}}
+                                onChange={() => {
+                                }}
                                 checked={agreement}
                             />
                             <RadioIconStyled/>
@@ -264,14 +264,15 @@ export const MailForm = () => {
                     <SendBtn
                         animation={animation}
                         onClick={onSend}
-                        disabled={!validMail || !agreement || mail.length < 5 || animation }
+                        disabled={!validMail || !agreement || mail.length < 5 || animation}
                     >
                         Отправить
                     </SendBtn>
                     <RectanglePurple/>
                     <RectangleYellow/>
                 </TextBlock>
-                <ButtonCentered onClick={() => openHref('https://t.me/yandex_internships_bot')}>Подать заявку</ButtonCentered>
+                <ButtonCentered onClick={() => openHref('https://t.me/yandex_internships_bot')}>Подать
+                    заявку</ButtonCentered>
             </Wrapper>
         </>
     );
