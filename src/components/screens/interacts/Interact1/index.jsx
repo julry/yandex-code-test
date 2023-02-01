@@ -11,6 +11,7 @@ import { RulesModal } from '../../../shared/RulesModal';
 import { Rules1Yellow } from '../../../shared/svg/rectangles/Rules1Yellow';
 import { Rules1Purple } from '../../../shared/svg/rectangles/Rules1Purple';
 import { ArrowBtn } from '../../../shared/ArrowBtn';
+import { DeleteBtn } from '../../../shared/svg/DeleteBtn';
 
 const ANSWER = [9, 5, 3, 4, 6];
 const TRIES_AMOUNT = 5;
@@ -86,6 +87,21 @@ const DoneBtn = styled(Cell)`
   margin: 0 auto;
 `;
 
+const DeleteBtnStyled = styled(DeleteBtn)`
+  height: var(--cellWidth);
+  width: var(--cellWidth);
+	position: absolute;
+	right: 0;
+	top: 0;
+`;
+
+const ButtonsBlock = styled.div`
+	position: relative;
+	display: flex;
+	width: calc(var(--cellWidth) * 5);
+	margin: 0 auto;
+`;
+
 const ButtonModalStyled = styled(ArrowBtn)`
   margin-top: 5.5vw;
 `;
@@ -133,9 +149,7 @@ export const Interact1 = () => {
 
     const onChooseNumber = (num) => {
         let id = currentNumId;
-        if (id + 1 > CELLS_AMOUNT) {
-            id = 0;
-        }
+        if (id + 1 > CELLS_AMOUNT) return;
         const newTries = [...tries];
         const newLine = [...newTries[currentTry]];
         newLine[id] = {num};
@@ -152,17 +166,23 @@ export const Interact1 = () => {
         if (!getDoneBtnActive()) return;
         const newTries = [...tries];
         const newLine = [...tries[currentTry]];
-        newTries[currentTry] = newLine.map((n, i) => {
+				const correctNums = [];
+				const colored = newLine.map((n, i) => {
             let bg;
             let correct = false;
             if (ANSWER.includes(n.num)) {
                 if (ANSWER.indexOf(n.num) === i) {
                     bg = colors.purple;
                     correct = true;
+										correctNums.push(n.num);
                 } else bg = colors.yellow;
             }
             return ({...n, bg, correct});
         });
+
+				newTries[currentTry] = colored
+					.map(n => (correctNums.includes(n.num) && !n.correct) ? ({...n, bg: null}) : n);
+
         setTries([...newTries]);
         if (newTries[currentTry].filter(num => !!num.correct).length === newTries[currentTry].length) {
             setFinishModal({shown: true, isWin: true});
@@ -174,7 +194,9 @@ export const Interact1 = () => {
         }
         if (currentTry + 1 === tries.length) {
             if (totalTries > 1) {
-                setFinishModal({shown: true, isOneMoreTry: true});
+							setTimeout(() => {
+								setFinishModal({shown: true, isOneMoreTry: true});
+							}, 500);
             } else {
                 setFinishModal({shown: true, isLose: true});
             }
@@ -196,6 +218,16 @@ export const Interact1 = () => {
         setRulesModal({shown: false, isFirstTime: false});
     }, [setRulesModal]);
 
+
+		const onDelete = useCallback(() => {
+			if (currentNumId - 1 < 0) return;
+			const newTries = [...tries];
+			const newLine = [...tries[currentTry]];
+			newLine[currentNumId - 1] = {num: ''};
+			newTries[currentTry] = newLine;
+			setTries([...newTries]);
+			setCurrentNumId(numId => --numId);
+		}, [tries, currentTry]);
 
     return (
         <>
@@ -221,9 +253,15 @@ export const Interact1 = () => {
                         </Line>
                     ))}
                 </ButtonsWrapper>
-                <DoneBtn
-                    background={getDoneBtnActive() && colors.purple}
-                    onClick={onAcceptTry}><Done/></DoneBtn>
+								<ButtonsBlock>
+									<DoneBtn
+										background={getDoneBtnActive() && colors.purple}
+										onClick={onAcceptTry}
+									>
+										<Done/>
+									</DoneBtn>
+									<DeleteBtnStyled onClick={onDelete} />
+								</ButtonsBlock>
             </Wrapper>
             {finishModal.shown && (
                 finishModal.isWin ? <WinModal/>
