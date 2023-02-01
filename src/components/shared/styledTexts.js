@@ -72,6 +72,10 @@ export const DescriptionMdBold = styled(DescriptionMd)`
 export const RegularDescription = styled(RegularText)`
   font-size: 16px;
 
+  @media screen and (max-width: 365px) {
+    font-size: 15px;
+  }
+	
   @media screen and (max-width: 320px) {
     font-size: 13px;
   }
