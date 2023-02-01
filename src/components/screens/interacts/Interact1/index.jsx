@@ -175,7 +175,7 @@ export const Interact1 = () => {
                     bg = colors.purple;
                     correct = true;
 										correctNums.push(n.num);
-                } else bg = colors.yellow;
+                } else if (newLine.findIndex(num => num.num === n.num) === i) bg = colors.yellow;
             }
             return ({...n, bg, correct});
         });
