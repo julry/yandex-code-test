@@ -52,5 +52,5 @@ export const PreQuestion1 = () => {
                 <ButtonStyled onClick={next}>За дело</ButtonStyled>
             </TextBlock>
         </Wrapper>
-    )
-}
+    );
+};

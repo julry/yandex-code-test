@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
-import { DialogText, MentorName } from '../../../shared/styledTexts';
 import { workPlace } from '../../../../constants/images';
 import { useProgress } from '../../../../hooks/useProgress';
+import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
+import { DialogText, MentorName } from '../../../shared/styledTexts';
 import { Man } from '../../../shared/svg/Man';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { Dialog } from '../../../shared/Dialog';
@@ -53,8 +53,10 @@ const YellowRectangle = styled(Post1Yellow)`
   height: 37.8666vw;
   z-index: -4;
 `;
+
 export const PostQuestion1 = () => {
     const {next} = useProgress();
+
     return (
         <>
             <BackgroundWrapper>

@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { reception } from '../../constants/images';
+import { colors } from '../../constants/colors';
+import { openHref } from '../../utils/openHref';
+import { sendDataToForms } from '../../utils/sendDataToForms';
 import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../shared/wrappers';
 import { BorderBlock } from '../shared/BorderBlock';
 import { Medium, RegularDescription, RegularText } from '../shared/styledTexts';
 import { ButtonCentered } from '../shared/ButtonCentered';
-import { openHref } from '../../utils/openHref';
-import { colors } from '../../constants/colors';
 import { MailPurple } from '../shared/svg/rectangles/MailPurple';
 import { MailYellow } from '../shared/svg/rectangles/MailYellow';
-import { sendDataToForms } from '../../utils/sendDataToForms';
 
 const Wrapper = styled(DarkenWrapper)`
   padding: min(25.333vw, 95px) 6.9333vw 10px;
@@ -186,7 +186,7 @@ export const MailForm = () => {
         setAnimation(true);
         sendDataToForms({mail}).then(() => {
             setAnimation(false);
-            openHref('https://t.me/yandex_internships_bot');
+            openHref('https://t.me/yandex_internships_bot', 'email');
         });
     };
 
@@ -198,6 +198,7 @@ export const MailForm = () => {
         if (validMail) return;
         setValidMail(checkValidMail());
     }, [mail, validMail, checkValidMail]);
+
     return (
         <>
             <BackgroundWrapper>
@@ -271,7 +272,7 @@ export const MailForm = () => {
                     <RectanglePurple/>
                     <RectangleYellow/>
                 </TextBlock>
-                <ButtonCentered onClick={() => openHref('https://t.me/yandex_internships_bot')}>Подать
+                <ButtonCentered onClick={() => openHref('https://t.me/yandex_internships_bot', 'apply')}>Подать
                     заявку</ButtonCentered>
             </Wrapper>
         </>

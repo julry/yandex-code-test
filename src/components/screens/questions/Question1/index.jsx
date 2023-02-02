@@ -55,6 +55,7 @@ export const Question1 = () => {
             question={getQuestionById(language, '1')}
             correctAnswer={getCorrectAnswerById(language, '1')}
             wrapperRef={wrapperRef}
+            metrika={'q1'}
         >
             <PurpleRectangle top={position.top}/>
             <YellowRectangle bottom={position.bottom}/>

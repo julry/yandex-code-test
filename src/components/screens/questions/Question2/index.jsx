@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
-import { QuestionWrapper } from '../../../shared/QuestionWrapper';
 import { getQuestionById } from '../../../../utils/getQuestionById';
 import { getCorrectAnswerById } from '../../../../utils/getCorrectAnswerById';
+import { QuestionWrapper } from '../../../shared/QuestionWrapper';
 import { QuestionYellow } from '../../../shared/svg/rectangles/QuestionYellow';
 import { Question2Purple } from '../../../shared/svg/rectangles/Question2Purple';
 
@@ -28,13 +28,15 @@ const YellowRectangle = styled(QuestionYellow)`
 
 export const Question2 = () => {
     const {language} = useProgress();
+
     return (
         <QuestionWrapper
             question={getQuestionById(language, '2')}
             correctAnswer={getCorrectAnswerById(language, '2')}
+            metrika={'q3'}
         >
             <PurpleRectangle />
             <YellowRectangle />
         </QuestionWrapper>
     );
-}
+};
