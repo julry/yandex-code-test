@@ -80,7 +80,7 @@ export const QuestionWrapper = (props) => {
                  next();
             }, 3000);
         }
-    }, [setIsModal, answers, correctAnswer, next, question]);
+    }, [setIsModal, answers, correctAnswer, next, question, metrika]);
 
     const onAnswerChoose = (id) => {
         if (answers[question.id] === id) {
@@ -93,6 +93,7 @@ export const QuestionWrapper = (props) => {
     const QuestionWrapper = question?.questionSize === 'sm' ?
         QuestionSm : question?.questionSize === 'md' ? DescriptionMd
         : Description;
+
     return (
         <>
             <Wrapper ref={props.wrapperRef} isModal={isModal.shown}>
