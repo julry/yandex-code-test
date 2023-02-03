@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
-import { DialogText, MentorName } from '../../../shared/styledTexts';
 import { coffeeBrake } from '../../../../constants/images';
 import { useProgress } from '../../../../hooks/useProgress';
+import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
+import { DialogText, MentorName } from '../../../shared/styledTexts';
 import { Man } from '../../../shared/svg/Man';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { Dialog } from '../../../shared/Dialog';

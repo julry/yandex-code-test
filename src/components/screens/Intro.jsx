@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useProgress } from '../../hooks/useProgress';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 import { Description, DescriptionBold, Title } from '../shared/styledTexts';
 import rectangles from '../shared/svg/rectangles/intro.svg';
 import { ButtonCentered } from '../shared/ButtonCentered';
 import { ContentWrapper } from '../shared/wrappers';
 import { SvgWrapper } from '../shared/SvgWrapper';
 import { BorderBlock } from '../shared/BorderBlock';
-import { useProgress } from '../../hooks/useProgress';
 
 const Wrapper = styled(ContentWrapper)`
   padding: 8.5vw 5.5vw;
@@ -37,6 +38,12 @@ const TitleStyled = styled(Title)`
 
 export const Intro = () => {
     const {next} = useProgress();
+
+    const onNext = () => {
+      reachMetrikaGoal('start');
+      next();
+    };
+
     return (
         <Wrapper>
             <Description>
@@ -56,7 +63,7 @@ export const Intro = () => {
             <TitleStyled>
                 {'Первый робо-рабочий день\nв офисе начинается!'}
             </TitleStyled>
-            <ButtonCentered onClick={next}>Поехали</ButtonCentered>
+            <ButtonCentered onClick={onNext}>Поехали</ButtonCentered>
         </Wrapper>
-    )
-}
+    );
+};

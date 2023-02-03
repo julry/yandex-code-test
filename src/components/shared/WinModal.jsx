@@ -39,9 +39,9 @@ const Content = styled(BorderBlock)`
   white-space: pre-wrap;
 `;
 
-export const WinModal = () => {
+export const WinModal = (props) => {
     return (
-        <Modal>
+        <Modal onClick={props.onClick}>
             <Wrapper>
                 <Content>
                     <Title>{'Ура, \nполучилось!'}</Title>

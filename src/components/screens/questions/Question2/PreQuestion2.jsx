@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
-import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
 import { workPlace, preQuestion2 } from '../../../../constants/images';
+import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
 import { Description, DescriptionMdBold } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { Dialog } from '../../../shared/Dialog';
@@ -37,6 +38,12 @@ const Rectangles = styled(SvgWrapper)`
 
 export const PreQuestion2 = () => {
     const {next} = useProgress();
+
+    const onNext = () => {
+      reachMetrikaGoal('startq3');
+      next();
+    };
+
     return (
         <>
             <BackgroundWrapper>
@@ -60,7 +67,7 @@ export const PreQuestion2 = () => {
                             'Дебажинг?'
                         }
                     </DescriptionMdBold>
-                    <ButtonCentered onClick={next}>Вызов принят!</ButtonCentered>
+                    <ButtonCentered onClick={onNext}>Вызов принят!</ButtonCentered>
                     <Rectangles />
                 </TextBlock>
             </Wrapper>

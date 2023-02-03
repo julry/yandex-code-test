@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../../../shared/wrappers';
-import { DialogText, MentorName } from '../../../shared/styledTexts';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
 import { workPlace2 } from '../../../../constants/images';
 import { useProgress } from '../../../../hooks/useProgress';
+import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../../../shared/wrappers';
+import { DialogText, MentorName } from '../../../shared/styledTexts';
 import { Man } from '../../../shared/svg/Man';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { Dialog } from '../../../shared/Dialog';
@@ -52,6 +53,12 @@ const YellowRectangle = styled(PostInter2Yellow)`
 
 export const PostInteract2 = () => {
     const {next} = useProgress();
+
+    const onNext = () => {
+      reachMetrikaGoal('q4');
+      next();
+    };
+
     return (
         <>
             <BackgroundWrapper>
@@ -75,7 +82,7 @@ export const PostInteract2 = () => {
                     <PurpleRectangle />
                     <YellowRectangle />
                 </TextBlock>
-                <ButtonCentered onClick={next}>Далее</ButtonCentered>
+                <ButtonCentered onClick={onNext}>Далее</ButtonCentered>
             </DarkenWrapper>
         </>
     );

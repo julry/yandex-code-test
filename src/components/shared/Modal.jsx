@@ -42,7 +42,7 @@ const CloseIconStyled = styled(CloseIcon)`
 
 export const Modal = (props) => {
     return (
-        <Wrapper>
+        <Wrapper onClick={props.onClick}>
             <Background/>
             <Content className={props.className}>
                 {props.close && (

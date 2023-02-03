@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
-import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../../../shared/wrappers';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
 import { workPlace2, welcome } from '../../../../constants/images';
+import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../../../shared/wrappers';
 import { Description } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { BorderBlock } from '../../../shared/BorderBlock';
@@ -51,6 +52,12 @@ const RectangleYellow = styled(Post3Yellow)`
 
 export const PostInteract3 = () => {
     const {next} = useProgress();
+
+    const onNext = () => {
+      reachMetrikaGoal('q5');
+      next();
+    };
+
     return (
         <>
             <BackgroundWrapper>
@@ -73,7 +80,7 @@ export const PostInteract3 = () => {
                     <RectanglePurple />
                     <RectangleYellow />
                 </TextBlock>
-                <ButtonCentered onClick={next}>Очень приятно :)</ButtonCentered>
+                <ButtonCentered onClick={onNext}>Очень приятно :)</ButtonCentered>
             </Wrapper>
         </>
     );

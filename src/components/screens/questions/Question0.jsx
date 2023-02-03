@@ -1,5 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useProgress } from '../../../hooks/useProgress';
+import { reachMetrikaGoal } from '../../../utils/reachMetrikaGoal';
+import { reception, language } from '../../../constants/images';
+import { LANGUAGE_TYPE } from '../../../constants/languageTypes';
 import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../shared/wrappers';
 import {
     Description,
@@ -8,10 +12,7 @@ import {
     RegularDescription
 } from '../../shared/styledTexts';
 import { BorderBlock } from '../../shared/BorderBlock';
-import { reception, language } from '../../../constants/images';
-import { LANGUAGE_TYPE } from '../../../constants/languageTypes';
 import { Button } from '../../shared/Button';
-import { useProgress } from '../../../hooks/useProgress';
 import { Man } from '../../shared/svg/Man';
 import { SvgWrapper } from '../../shared/SvgWrapper';
 import { Dialog } from '../../shared/Dialog';
@@ -72,15 +73,24 @@ const Rectangles = styled(SvgWrapper)`
   z-index: -2;
 `;
 
-
+const METRIKA_NAME = {
+    Python: 'python',
+    Java: 'java',
+    JS: 'js',
+    CPlus: 'c',
+    Swift: 'swift',
+    Kotlin: 'kotlin'
+};
 
 export const Question0 = () => {
     const {next, updateProgress} = useProgress();
 
     const onPickAnswer = (type) => {
-        updateProgress('language', type);
+        updateProgress('language', LANGUAGE_TYPE[type]);
+        reachMetrikaGoal('cl');
+        reachMetrikaGoal(METRIKA_NAME[type]);
         next();
-    }
+    };
 
     return (
         <>
@@ -102,11 +112,11 @@ export const Question0 = () => {
                     <RegularDescription>{'Выбери язык, на котором тебе больше всего нравится кодить:'}</RegularDescription>
                     <AnswersWrapper>
                         {Object.keys(LANGUAGE_TYPE).map((type) => (
-                            <Answer onClick={() => onPickAnswer(LANGUAGE_TYPE[type])} key={type}>{LANGUAGE_TYPE[type]}</Answer>
+                            <Answer onClick={() => onPickAnswer(type)} key={type}>{LANGUAGE_TYPE[type]}</Answer>
                         ))}
                     </AnswersWrapper>
                 </Question>
             </Wrapper>
         </>
-    )
-}
+    );
+};

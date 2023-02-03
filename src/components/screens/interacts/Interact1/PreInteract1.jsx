@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
 import { workPlace, preInteract1 } from '../../../../constants/images';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
 import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
 import { Description, DescriptionMdBold } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
@@ -40,6 +41,12 @@ const Rectangles = styled(SvgWrapper)`
 
 export const PreInteract1 = () => {
     const {next} = useProgress();
+
+    const onNext = () => {
+      reachMetrikaGoal('startq2');
+      next();
+    };
+
     return (
         <>
             <BackgroundWrapper>
@@ -66,7 +73,7 @@ export const PreInteract1 = () => {
                             'в сумме дают 27. Помоги стажёру подобрать верный!'
                         }
                     </DescriptionMdBold>
-                    <ButtonCentered onClick={next}>За дело</ButtonCentered>
+                    <ButtonCentered onClick={onNext}>За дело</ButtonCentered>
                     <Rectangles/>
                 </TextBlock>
             </Wrapper>

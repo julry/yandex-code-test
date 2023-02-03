@@ -10,6 +10,7 @@ import { WinModal } from './WinModal';
 import { getPostAnswerById } from '../../utils/getPostAnswerById';
 import { LooseModal } from './LooseModal';
 import { ArrowBtn } from './ArrowBtn';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 const Wrapper = styled(ContentWrapper)`
   padding: 8.5vw 5.5vw 8vw;
@@ -67,18 +68,14 @@ const QuestionSm = styled(DescriptionSm)`
 export const QuestionWrapper = (props) => {
     const [isModal, setIsModal] = useState({shown: false});
     const {updateAnswer, answers, next, language} = useProgress();
-    const {question, correctAnswer} = props;
+    const {question, correctAnswer, metrika} = props;
 
     const onBtnClick = useCallback(() => {
         document.addEventListener('scroll', (e) => e.preventDefault());
         const isWin = correctAnswer?.id === answers[question?.id];
+        if (metrika) reachMetrikaGoal(metrika);
         setIsModal({shown: true, isWin});
-        if (isWin) {
-            setTimeout(() => {
-                 next();
-            }, 3000);
-        }
-    }, [setIsModal, answers, correctAnswer, next, question]);
+    }, [setIsModal, answers, correctAnswer, question, metrika]);
 
     const onAnswerChoose = (id) => {
         if (answers[question.id] === id) {
@@ -91,6 +88,7 @@ export const QuestionWrapper = (props) => {
     const QuestionWrapper = question?.questionSize === 'sm' ?
         QuestionSm : question?.questionSize === 'md' ? DescriptionMd
         : Description;
+
     return (
         <>
             <Wrapper ref={props.wrapperRef} isModal={isModal.shown}>
@@ -120,7 +118,7 @@ export const QuestionWrapper = (props) => {
                 </ButtonStyled>
             </Wrapper>
             {isModal.shown && (
-                isModal.isWin ? <WinModal/>
+                isModal.isWin ? <WinModal onClick={next}/>
                     : (
                         <LooseModal>
                             <DescriptionMd>

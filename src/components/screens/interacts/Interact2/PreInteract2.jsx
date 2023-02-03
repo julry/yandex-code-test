@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
-import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
+import { reachMetrikaGoal } from '../../../../utils/reachMetrikaGoal';
 import { coffeeBrake, preInteract2 } from '../../../../constants/images';
+import { BackgroundBlurred, BackgroundWrapper, ContentWrapper } from '../../../shared/wrappers';
 import { Description, DescriptionMdBold } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
 import { Dialog } from '../../../shared/Dialog';
@@ -36,6 +37,12 @@ const Rectangles = styled(SvgWrapper)`
 
 export const PreInteract2 = () => {
     const {next} = useProgress();
+
+    const onNext = () => {
+      reachMetrikaGoal('startq4');
+      next();
+    };
+
     return (
         <>
             <BackgroundWrapper>
@@ -55,7 +62,7 @@ export const PreInteract2 = () => {
                             'Ой, кажется, у неё сегодня просто плохое настроение :(  Подбери нужные цвета для его поднятия!'
                         }
                     </DescriptionMdBold>
-                    <ButtonCentered onClick={next}>За дело</ButtonCentered>
+                    <ButtonCentered onClick={onNext}>За дело</ButtonCentered>
                     <Rectangles />
                 </TextBlock>
             </Wrapper>

@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { useProgress } from '../../../../hooks/useProgress';
+import { shuffle } from '../../../../utils/shuffle';
+import { colors } from '../../../../constants/colors';
 import { ContentWrapper } from '../../../shared/wrappers';
 import { MediumText, RegularDescription, RulesText } from '../../../shared/styledTexts';
-import { useProgress } from '../../../../hooks/useProgress';
 import { RulesModal } from '../../../shared/RulesModal';
 import { welcome } from '../../../../constants/images';
 import { BorderBlock } from '../../../shared/BorderBlock';
-import { shuffle } from '../../../../utils/shuffle';
 import { Post3Purple } from '../../../shared/svg/rectangles/Post3Purple';
 import { Post3Yellow } from '../../../shared/svg/rectangles/Post3Yellow';
-import { colors } from '../../../../constants/colors';
 import { Rules3Purple } from '../../../shared/svg/rectangles/Rules3Purple';
 import { Rules3Yellow } from '../../../shared/svg/rectangles/Rules3Yellow';
 import { ButtonCentered } from '../../../shared/ButtonCentered';

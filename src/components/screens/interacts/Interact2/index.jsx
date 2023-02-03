@@ -146,9 +146,6 @@ export const Interact2 = () => {
 
         if (amount === CIRCLES_AMOUNT) {
             setFinishModal({shown: true, isWin: true});
-            setTimeout(() => {
-                next();
-            }, 1500);
         }
         if (currentTry + 1 >= TRIES_AMOUNT) {
             if (totalTries > 1) {
@@ -157,7 +154,7 @@ export const Interact2 = () => {
                 setFinishModal({shown: true, isLose: true});
             }
         } else setCurrentTry(id => id + 1);
-    }, [tries, currentColors, currentTry, onRetry, next, totalTries]);
+    }, [tries, currentColors, currentTry, onRetry, totalTries]);
 
     return (
         <>
@@ -187,7 +184,7 @@ export const Interact2 = () => {
                     Отправить
                 </ButtonCentered>
             </Wrapper>
-            {finishModal.shown && (finishModal.isWin ? <FinishModal/> : (
+            {finishModal.shown && (finishModal.isWin ? <FinishModal onClick={next}/> : (
                 <LooseModal>
                     <DescriptionMd>
                         {
