@@ -186,10 +186,6 @@ export const Interact1 = () => {
         setTries([...newTries]);
         if (newTries[currentTry].filter(num => !!num.correct).length === newTries[currentTry].length) {
             setFinishModal({shown: true, isWin: true});
-            setTimeout(() => {
-                setFinishModal({shown: false, isWin: false});
-                next();
-            }, 1500);
             return;
         }
         if (currentTry + 1 === tries.length) {
@@ -204,7 +200,7 @@ export const Interact1 = () => {
         }
         setCurrentNumId(0);
         setCurrentTry(id => id + 1);
-    }, [tries, next, currentTry, totalTries, getDoneBtnActive]);
+    }, [tries, currentTry, totalTries, getDoneBtnActive]);
 
     const onRetry = useCallback(() => {
         setTries(initialTries);
@@ -227,7 +223,7 @@ export const Interact1 = () => {
 			newTries[currentTry] = newLine;
 			setTries([...newTries]);
 			setCurrentNumId(numId => --numId);
-		}, [tries, currentTry]);
+		}, [tries, currentTry, currentNumId]);
 
     return (
         <>
@@ -264,7 +260,7 @@ export const Interact1 = () => {
 								</ButtonsBlock>
             </Wrapper>
             {finishModal.shown && (
-                finishModal.isWin ? <WinModal/>
+                finishModal.isWin ? <WinModal onClick={next}/>
                     : finishModal.isOneMoreTry ? (
                         <LooseModal>
                             <DescriptionMd>

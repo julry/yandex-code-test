@@ -75,12 +75,7 @@ export const QuestionWrapper = (props) => {
         const isWin = correctAnswer?.id === answers[question?.id];
         if (metrika) reachMetrikaGoal(metrika);
         setIsModal({shown: true, isWin});
-        if (isWin) {
-            setTimeout(() => {
-                 next();
-            }, 3000);
-        }
-    }, [setIsModal, answers, correctAnswer, next, question, metrika]);
+    }, [setIsModal, answers, correctAnswer, question, metrika]);
 
     const onAnswerChoose = (id) => {
         if (answers[question.id] === id) {
@@ -123,7 +118,7 @@ export const QuestionWrapper = (props) => {
                 </ButtonStyled>
             </Wrapper>
             {isModal.shown && (
-                isModal.isWin ? <WinModal/>
+                isModal.isWin ? <WinModal onClick={next}/>
                     : (
                         <LooseModal>
                             <DescriptionMd>
