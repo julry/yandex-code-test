@@ -6,6 +6,7 @@ import { Cup } from './svg/Cup';
 import { SvgWrapper } from './SvgWrapper';
 import rectangles from './svg/rectangles/winModal.svg';
 import { BorderBlock } from './BorderBlock';
+import { ArrowBtn } from './ArrowBtn';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -39,9 +40,16 @@ const Content = styled(BorderBlock)`
   white-space: pre-wrap;
 `;
 
+const BtnStyled = styled(ArrowBtn)`
+  position: absolute;
+  top: 49.666vw;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 export const WinModal = (props) => {
     return (
-        <Modal onClick={props.onClick}>
+        <Modal>
             <Wrapper>
                 <Content>
                     <Title>{'Ура, \nполучилось!'}</Title>
@@ -49,6 +57,7 @@ export const WinModal = (props) => {
                 <CupStyled/>
             </Wrapper>
             <Rectangles/>
+          <BtnStyled miniArrow onClick={props.onClick} />
         </Modal>
     );
 };

@@ -13,7 +13,7 @@ const Rectangles = styled(SvgWrapper)`
 `;
 
 export const Reception = () => {
-    return <LocationWrapper text={'Ресепшн'} bg={reception} isScaled={true}>
+    return <LocationWrapper text={'Ресепшн'} bg={reception} isScaled={true} locNum={0}>
         <Rectangles/>
     </LocationWrapper>
 };

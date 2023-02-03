@@ -13,7 +13,7 @@ const Rectangles = styled(SvgWrapper)`
 `;
 
 export const CoffeeBrake = () => {
-    return <LocationWrapper text={'Кофе-брейк'} bg={coffeeBrake}>
+    return <LocationWrapper text={'Кофе-брейк'} bg={coffeeBrake} locNum={3}>
         <Rectangles/>
     </LocationWrapper>
 }

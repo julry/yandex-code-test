@@ -1,8 +1,9 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { getArray } from '../../../../utils/getArray';
+import { colors } from '../../../../constants/colors';
 import { ContentWrapper } from '../../../shared/wrappers';
 import { DescriptionMd, DescriptionSm, Medium, RegularDescription, Title } from '../../../shared/styledTexts';
-import { colors } from '../../../../constants/colors';
 import { DoneMark } from '../../../shared/svg/DoneMark';
 import { WinModal } from '../../../shared/WinModal';
 import { LooseModal } from '../../../shared/LooseModal';
@@ -129,10 +130,6 @@ const RulesYellowRectangle = styled(Rules1Yellow)`
 `;
 
 export const Interact1 = () => {
-    const getArray = (length, content) => {
-        const func = typeof content === 'function' ? content : () => content;
-        return Array.from({length}, func);
-    };
     const initialTries = useMemo(() => [...getArray(TRIES_AMOUNT, getArray(CELLS_AMOUNT, ''))],[]);
     const {next} = useProgress();
     const [tries, setTries] = useState(initialTries);

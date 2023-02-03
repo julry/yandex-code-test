@@ -6,6 +6,7 @@ import { MediumText } from '../../../shared/styledTexts';
 import { Modal } from '../../../shared/Modal';
 import { BorderBlock } from '../../../shared/BorderBlock';
 import { SvgWrapper } from '../../../shared/SvgWrapper';
+import { ArrowBtn } from '../../../shared/ArrowBtn';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -39,9 +40,16 @@ const Content = styled(BorderBlock)`
   white-space: pre-wrap;
 `;
 
+const BtnStyled = styled(ArrowBtn)`
+  position: absolute;
+  top: 40.4vw;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 export const FinishModal = ({ onClick }) => {
     return (
-        <Modal onClick={onClick}>
+        <Modal>
             <Wrapper>
                 <Content>
                     <Title>Есть контакт!</Title>
@@ -49,6 +57,7 @@ export const FinishModal = ({ onClick }) => {
                 <StarStyled/>
             </Wrapper>
             <Rectangles/>
+            <BtnStyled miniArrow onClick={onClick}/>
         </Modal>
     );
 };

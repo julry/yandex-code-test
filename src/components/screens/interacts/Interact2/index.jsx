@@ -2,6 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../constants/colors';
 import { useProgress } from '../../../../hooks/useProgress';
+import { getArray } from '../../../../utils/getArray';
 import { ContentWrapper } from '../../../shared/wrappers';
 import { DescriptionMd, RegularText, RulesText } from '../../../shared/styledTexts';
 import { ButtonCentered } from '../../../shared/ButtonCentered';
@@ -100,10 +101,6 @@ const ButtonModalStyled = styled(ArrowBtn)`
 
 export const Interact2 = () => {
     const {next} = useProgress();
-    const getArray = (length, content) => {
-        const func = typeof content === 'function' ? content : () => content;
-        return Array.from({length}, func);
-    };
     const initialTries = useMemo(() => [
         ...getArray(TRIES_AMOUNT, getArray(CIRCLES_AMOUNT, ''))
     ], []);

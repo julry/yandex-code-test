@@ -2,11 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useProgress } from '../../../../hooks/useProgress';
 import { shuffle } from '../../../../utils/shuffle';
+import { getArray } from '../../../../utils/getArray';
 import { colors } from '../../../../constants/colors';
+import { welcome } from '../../../../constants/images';
 import { ContentWrapper } from '../../../shared/wrappers';
 import { MediumText, RegularDescription, RulesText } from '../../../shared/styledTexts';
 import { RulesModal } from '../../../shared/RulesModal';
-import { welcome } from '../../../../constants/images';
 import { BorderBlock } from '../../../shared/BorderBlock';
 import { Post3Purple } from '../../../shared/svg/rectangles/Post3Purple';
 import { Post3Yellow } from '../../../shared/svg/rectangles/Post3Yellow';
@@ -143,11 +144,6 @@ export const Interact3 = () => {
     const [shownCells, setShownCells] = useState([]);
     const [finished, setFinished] = useState(false);
     const [rulesModal, setRulesModal] = useState({shown: true, isFirstTime: true});
-
-    const getArray = (length, content) => {
-        const func = typeof content === 'function' ? content : () => content;
-        return Array.from({length}, func);
-    };
 
     useEffect(() => {
         const size = (document.documentElement.clientWidth * 0.804) / CELLS_ROW_AMOUNT;

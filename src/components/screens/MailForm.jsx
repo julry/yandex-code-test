@@ -186,7 +186,7 @@ export const MailForm = () => {
         setAnimation(true);
         sendDataToForms({mail}).then(() => {
             setAnimation(false);
-            openHref('https://t.me/yandex_internships_bot', 'email');
+            openHref('https://t.me/young_yandex_bot', 'email');
         });
     };
 
@@ -208,18 +208,18 @@ export const MailForm = () => {
                 <TextBlock>
                     <RegularDescription>
                         {
-                            'Поздравляем, ты отлично справился! Первый рабочий день прошел успешно. ' +
-                            'В Яндексе тебя ждет ещё много интересных задач, ценного опыта и классная команда.\n' +
-                            'Подавай заявку на настоящую стажировку в '
+                            'Поздравляем, ты отлично справился! Первый рабочий день прошёл успешно. ' +
+                            'В Яндексе тебя ждёт ещё много интересных задач, ценного опыта и классная команда.\n' +
+                            'Подавай заявку на настоящую стажировку через '
                         }
-                        <Medium>Telegram-канале</Medium>!
+                        <Medium>Telegram-бот</Medium>!
                     </RegularDescription>
                     <br/>
                     <RegularDescription>
                         {
                             'И приятный бонус — ты можешь выиграть '
                         }
-                        <Medium> Яндекс.Станцию</Medium>
+                        <Medium> Яндекс Станцию</Medium>
                         {
                             '.\n Для участия в розыгрыше оставь свою почту'
                         }
@@ -272,7 +272,7 @@ export const MailForm = () => {
                     <RectanglePurple/>
                     <RectangleYellow/>
                 </TextBlock>
-                <ButtonCentered onClick={() => openHref('https://t.me/yandex_internships_bot', 'apply')}>Подать
+                <ButtonCentered onClick={() => openHref('https://t.me/young_yandex_bot', 'apply')}>Подать
                     заявку</ButtonCentered>
             </Wrapper>
         </>
