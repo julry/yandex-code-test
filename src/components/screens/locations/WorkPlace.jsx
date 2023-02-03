@@ -13,7 +13,7 @@ const Rectangles = styled(SvgWrapper)`
 `;
 
 export const WorkPlace = () => {
-    return <LocationWrapper text={'Рабочее место'} bg={workPlace} isScaled={true}>
+    return <LocationWrapper text={'Рабочее место'} bg={workPlace} isScaled={true} locNum={2}>
         <Rectangles/>
     </LocationWrapper>
 }
