@@ -14,7 +14,7 @@ import { Rules2 } from './Rules2';
 const ANSWER = ['#E72525', '#F8791D', '#FCCD00', '#62B146'];
 const TRIES_AMOUNT = 5;
 const CIRCLES_AMOUNT = 4;
-const TOTAL_TRIES = 2;
+const TOTAL_TRIES = 1;
 const COLORS = ['#E72525', '#5A50E2', '#1495CF', '#62B146', '#FCCD00', '#F8791D', '#FFFFFF', '#D7D7D7'];
 
 const Wrapper = styled(ContentWrapper)`
@@ -111,7 +111,6 @@ export const Interact2 = () => {
     const [rulesModal, setRulesModal] = useState({shown: true, isFirstTime: true});
     const [totalTries, setTotalTries] = useState(TOTAL_TRIES);
 
-
     const circles = getArray(CIRCLES_AMOUNT, () => '');
 
     const onCircleClick = useCallback((num) => {
@@ -136,9 +135,12 @@ export const Interact2 = () => {
         const newTries = [...tries];
 
         newTries[currentTry] = currentColors
-            .map((color) => (
-                {bg: ANSWER.includes(color.bg) ? 'white' : null}
-            ));
+            .map((color, index) =>  ({
+                bg: ANSWER.includes(color.bg) && currentColors.findIndex(c => c.bg === color.bg) === index ?
+                  'white'
+                  : null
+            })
+            );
         setTries([...newTries]);
 
         if (amount === CIRCLES_AMOUNT) {
@@ -185,7 +187,7 @@ export const Interact2 = () => {
                 <LooseModal>
                     <DescriptionMd>
                         {
-                            'Видимо, вы на разных языках говорили с машиной, но её рассмешил ваш немного неловкий диалог. \n' +
+                            'Видимо, вы на разных языках говорили с машиной, но её рассмешил ваш немного неловкий диалог. \n\n' +
                             'Ура, она всё же улыбнулась! :)'
                         }
                     </DescriptionMd>

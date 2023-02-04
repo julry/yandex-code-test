@@ -100,7 +100,7 @@ export const Question0 = () => {
             <Wrapper>
                 <Description>
                     {'А вот и первая встреча! \n' +
-                        'К роботу-стажеру подходит ментор:'}
+                        'К роботу-стажёру подходит ментор:'}
                 </Description>
                 <TextBlock>
                     <MentorName>Ментор</MentorName>
