@@ -17,7 +17,7 @@ import { DeleteBtn } from '../../../shared/svg/DeleteBtn';
 const ANSWER = [9, 5, 3, 4, 6];
 const TRIES_AMOUNT = 5;
 const CELLS_AMOUNT = 5;
-const TOTAL_TRIES_AMOUNT = 2;
+const TOTAL_TRIES_AMOUNT = 1;
 
 const Wrapper = styled(ContentWrapper)`
   --cellWidth: 58px;
@@ -284,11 +284,11 @@ export const Interact1 = () => {
                     <RegularDescription>
                         {
                             'Вписывай цифры в пустые ячейки ряда так, чтобы они в сумме давали 27.\nОтправляй свой ответ галочкой, ' +
-                            '\nкак только подберешь ряд.'
+                            '\nкак только подберёшь ряд.'
                         }
                         <br/><br/>
                         {'Если ячейка стала '}
-                        <Medium>желтой</Medium>
+                        <Medium>жёлтой</Medium>
                         {' — цифра есть в пароле, но стоит на другом месте. Если '}
                         <Medium>фиолетовой</Medium>
                         {' — цифра расположена верно. В остальных случаях выбранной цифры в пароле нет.'}

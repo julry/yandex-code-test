@@ -18,7 +18,7 @@ const Wrapper = styled(DarkenWrapper)`
 const TextBlock = styled(BorderBlock)`
   display: flex;
   flex-direction: column;
-  padding: 5.06vw 4.533vw 5.06vw 5.06vw;
+  padding: 5.06vw 4.833vw 5.06vw 5.06vw;
   width: 100%;
   margin-bottom: min(5.333vw, 20px);
 `;
@@ -215,11 +215,15 @@ export const MailForm = () => {
                         <Medium>Telegram-бот</Medium>!
                     </RegularDescription>
                     <br/>
+                    <ButtonCentered onClick={() => openHref('https://t.me/young_yandex_bot', 'apply')}>
+                        Подать заявку
+                    </ButtonCentered>
+                    <br/>
                     <RegularDescription>
                         {
                             'И приятный бонус — ты можешь выиграть '
                         }
-                        <Medium> Яндекс Станцию</Medium>
+                        <Medium> Яндекс Станцию Лайт</Medium>
                         {
                             '.\n Для участия в розыгрыше оставь свою почту'
                         }
@@ -272,8 +276,6 @@ export const MailForm = () => {
                     <RectanglePurple/>
                     <RectangleYellow/>
                 </TextBlock>
-                <ButtonCentered onClick={() => openHref('https://t.me/young_yandex_bot', 'apply')}>Подать
-                    заявку</ButtonCentered>
             </Wrapper>
         </>
     );

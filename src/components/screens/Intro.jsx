@@ -61,7 +61,9 @@ export const Intro = () => {
                 </DescriptionBold>
             </TextBlock>
             <TitleStyled>
-                {'Первый робо-рабочий день\nв офисе начинается!'}
+                {'Путешествуй по локациям\n' +
+                'офиса и общайся с коллегами.\n' +
+                'Первый робо-рабочий день начинается!'}
             </TitleStyled>
             <ButtonCentered onClick={onNext}>Поехали</ButtonCentered>
         </Wrapper>

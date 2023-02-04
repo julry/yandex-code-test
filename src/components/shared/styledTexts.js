@@ -14,14 +14,14 @@ export const RegularText = styled.p`
 `;
 
 export const Title = styled(BoldText)`
-  font-size: 22px;
+  font-size: 20px;
   
   @media screen and (max-width: 330px) {
     font-size: 16px;
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 24px;
+    font-size: 22px;
   }
   
   @media screen and (min-width: 1000px) {
