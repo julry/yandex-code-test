@@ -175,6 +175,7 @@ export const MailForm = () => {
     const [agreement, setAgreement] = useState(false);
     const [animation, setAnimation] = useState(false);
     const [validMail, setValidMail] = useState(true);
+    const [isSendMail, setIsSendMail] = useState(false);
 
     const onOpen = (e) => {
         e.stopPropagation();
@@ -184,9 +185,11 @@ export const MailForm = () => {
     const onSend = () => {
         if (!validMail) return;
         setAnimation(true);
-        sendDataToForms({mail}).then(() => {
+        openHref('https://t.me/young_yandex_bot', 'email');
+        sendDataToForms({mail}).then((result) => {
+            if (!result?.error) setIsSendMail(true);
+        }).finally(() => {
             setAnimation(false);
-            openHref('https://t.me/young_yandex_bot', 'email');
         });
     };
 
@@ -269,7 +272,7 @@ export const MailForm = () => {
                     <SendBtn
                         animation={animation}
                         onClick={onSend}
-                        disabled={!validMail || !agreement || mail.length < 5 || animation}
+                        disabled={!validMail || !agreement || mail.length < 5 || animation || isSendMail}
                     >
                         Отправить
                     </SendBtn>
