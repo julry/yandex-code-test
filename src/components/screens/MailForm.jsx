@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 import { reception } from '../../constants/images';
 import { colors } from '../../constants/colors';
 import { openHref } from '../../utils/openHref';
-import { sendDataToForms } from '../../utils/sendDataToForms';
 import { BackgroundBlurred, BackgroundWrapper, DarkenWrapper } from '../shared/wrappers';
 import { BorderBlock } from '../shared/BorderBlock';
-import { Medium, RegularDescription, RegularText } from '../shared/styledTexts';
+import { Medium, RegularDescription } from '../shared/styledTexts';
 import { ButtonCentered } from '../shared/ButtonCentered';
 import { MailPurple } from '../shared/svg/rectangles/MailPurple';
 import { MailYellow } from '../shared/svg/rectangles/MailYellow';
@@ -23,129 +22,8 @@ const TextBlock = styled(BorderBlock)`
   margin-bottom: min(5.333vw, 20px);
 `;
 
-const Form = styled.div`
-  position: relative;
-  z-index: 3;
-  margin: 0 auto;
-  padding: min(4vw, 15px) 0 0;
-  width: 75vw;
-  max-width: 300px;
-`;
-
-const Input = styled.input`
-  border-radius: 5px;
-  touch-action: none;
-  border: none;
-  padding-right: 5px;
-  background: inherit;
-  font-size: 18px;
-  color: inherit;
-  width: 100%;
-  font-family: 'Yandex Sans', Tahoma, Geneva, sans-serif;
-
-  &:focus {
-    outline: none;
-  }
-
-  @media screen and (max-width: 330px) {
-    font-size: 15px;
-  }
-`;
-
-const InputCheckboxStyled = styled.input`
-  display: none;
-`;
-
-const RadioIconStyled = styled.div`
-  position: relative;
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  border: 1px solid ${colors.textGray};
-  border-radius: 5px;
-  margin-right: 10px;
-  @media screen and (min-width: 1000px) {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
-const LabelStyled = styled.label`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  margin-top: 12px;
-
-  @media screen and (min-width: 1000px) {
-    margin-top: auto;
-  }
-
-  & ${InputCheckboxStyled}:checked + ${RadioIconStyled}:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    background-color: ${colors.yellow};
-  }
-`;
-
-const TextWrapperStyled = styled.div`
-  display: flex;
-  align-items: center;
-  min-height: 100%;
-`;
-
-const TextStyled = styled(RegularText)`
-  font-size: 9px;
-
-  @media screen and (min-width: 768px) {
-    white-space: normal;
-    font-size: 12px;
-  }
-
-  @media screen and (min-width: 1000px) {
-    font-size: 14px;
-  }
-`;
-
-const PersonalDataLink = styled.span`
+const FTGroupLink = styled.span`
   border-bottom: 1px solid ${colors.textGray};
-`;
-
-const InputWrapper = styled.div`
-  padding: 8px 12px;
-  border: 1px solid ${({valid}) => valid ? colors.textGray : 'red'};
-  border-radius: 5px;
-  font-size: 18px;
-  color: ${colors.textGray};
-  transition: border 0.3s ease-in;
-
-  @media screen and (max-width: 330px) {
-    font-size: 16px;
-  }
-`;
-
-const sending = keyframes`
-  0% {
-    background: ${colors.purple};
-  }
-  50% {
-    background: transparent;
-  }
-  100% {
-    background: ${colors.purple};
-  }
-`;
-
-const SendBtn = styled(ButtonCentered)`
-  margin-top: min(5.333vw, 20px);
-  transform-origin: 50% 50%;
-  animation: ${sending} ${({animation}) => animation ? '2s' : 0} infinite ease-in;
-  width: 75vw;
-  max-width: 300px;
 `;
 
 const RectanglePurple = styled(MailPurple)`
@@ -171,37 +49,6 @@ const RectangleYellow = styled(MailYellow)`
 `;
 
 export const MailForm = () => {
-    const [mail, setMail] = useState('');
-    const [agreement, setAgreement] = useState(false);
-    const [animation, setAnimation] = useState(false);
-    const [validMail, setValidMail] = useState(true);
-    const [isSendMail, setIsSendMail] = useState(false);
-
-    const onOpen = (e) => {
-        e.stopPropagation();
-        openHref('https://fut.ru/personal_data_policy/');
-    };
-
-    const onSend = () => {
-        if (!validMail) return;
-        setAnimation(true);
-        openHref('https://t.me/young_yandex_bot', 'email');
-        sendDataToForms({mail}).then((result) => {
-            if (!result?.error) setIsSendMail(true);
-        }).finally(() => {
-            setAnimation(false);
-        });
-    };
-
-    const checkValidMail = useCallback(() => {
-        return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail);
-    }, [mail]);
-
-    useEffect(() => {
-        if (validMail) return;
-        setValidMail(checkValidMail());
-    }, [mail, validMail, checkValidMail]);
-
     return (
         <>
             <BackgroundWrapper>
@@ -213,9 +60,10 @@ export const MailForm = () => {
                         {
                             'Поздравляем, ты отлично справился! Первый рабочий день прошёл успешно. ' +
                             'В Яндексе тебя ждёт ещё много интересных задач, ценного опыта и классная команда.\n' +
-                            'Подавай заявку на настоящую стажировку через '
+                            'Подавай заявку на настоящую стажировку в '
                         }
-                        <Medium>Telegram-бот</Medium>!
+                        <Medium>Telegram-боте</Medium>!
+                        {'\n Кнопка ниже — твой портал для старта карьеры в IT!'}
                     </RegularDescription>
                     <br/>
                     <ButtonCentered onClick={() => openHref('https://t.me/young_yandex_bot', 'apply')}>
@@ -223,59 +71,11 @@ export const MailForm = () => {
                     </ButtonCentered>
                     <br/>
                     <RegularDescription>
-                        {
-                            'И приятный бонус — ты можешь выиграть '
-                        }
-                        <Medium> Яндекс Станцию Лайт</Medium>
-                        {
-                            '.\n Для участия в розыгрыше оставь свою почту'
-                        }
+                        {'Розыгрыш Яндекс Станций уже закончился — его результаты смотри\n'}
+                        <FTGroupLink onClick={() => openHref('https://vk.com/itfutru')}>
+                            {'в группе FutureToday'}
+                        </FTGroupLink>
                     </RegularDescription>
-                    <Form>
-                        <InputWrapper valid={validMail}>
-                            <Input
-                                type="email"
-                                placeholder="example@post.ru"
-                                name="XmnwAc"
-                                value={mail}
-                                onChange={e => setMail(e.target.value)}
-                                onBlur={() => setValidMail(() => !mail.length || checkValidMail())}
-                                required
-                            />
-                        </InputWrapper>
-                        <LabelStyled
-                            onClick={(e) => {
-                                if (e.detail === 1) setAgreement(value => !value);
-                            }}
-                        >
-                            <InputCheckboxStyled
-                                type={'radio'}
-                                name={'agreement'}
-                                onChange={() => {
-                                }}
-                                checked={agreement}
-                            />
-                            <RadioIconStyled/>
-                            <TextWrapperStyled>
-                                <TextStyled>
-                                    {'Я согласен на '}
-                                    <PersonalDataLink
-                                        onClick={(e) => onOpen(e)}
-                                    >
-                                        обработку персональных данных
-                                    </PersonalDataLink>
-                                    {'\nи получение информационных сообщений'}
-                                </TextStyled>
-                            </TextWrapperStyled>
-                        </LabelStyled>
-                    </Form>
-                    <SendBtn
-                        animation={animation}
-                        onClick={onSend}
-                        disabled={!validMail || !agreement || mail.length < 5 || animation || isSendMail}
-                    >
-                        Отправить
-                    </SendBtn>
                     <RectanglePurple/>
                     <RectangleYellow/>
                 </TextBlock>
